@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\ProductAggregate\" />
+    <Compile Remove="Models\ProductAggregate\**" />
+    <EmbeddedResource Remove="Models\ProductAggregate\**" />
+    <None Remove="Models\ProductAggregate\**" />
   </ItemGroup>
 
 </Project>
