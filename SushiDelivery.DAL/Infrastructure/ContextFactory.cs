@@ -1,33 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace SushiDelivery.DAL.Infrastructure
 {
-    internal class ContextFactory : IContextFactory, IDbContextFactory<SushiDeliveryDbContext>  
+    internal class ContextFactory : IContextFactory, IDesignTimeDbContextFactory<SushiDeliveryDbContext>
     {
 
         #region Constants
 
         private const string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projects\\SushiDelivery\\SushiDeliveryDb.mdf;Integrated Security = True; Connect Timeout = 30";
-
-        #endregion
-
-        #region _ctors
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        private ContextFactory()
-        {
-        }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets application wide instance of <see cref="DbContextFactory"/>.
-        /// </summary>
-        public static ContextFactory Instance { get; } = new ContextFactory();
 
         #endregion
 
@@ -47,7 +28,7 @@ namespace SushiDelivery.DAL.Infrastructure
         /// This method is by Entity Framework tools when creating and applying migrations to the database.
         /// </summary>
         /// <returns>Database context.</returns>
-        SushiDeliveryDbContext IDbContextFactory<SushiDeliveryDbContext>.CreateDbContext()
+        public SushiDeliveryDbContext CreateDbContext(string[] args)
         {
             return CreateInternal();
         }
