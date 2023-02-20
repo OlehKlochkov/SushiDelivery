@@ -22,7 +22,7 @@ namespace SushiDelivery.Domain
         [StringLength(1024)]
         [Description("ProductName")]
         [Display(Name = "ProductName")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
         [Range(0.0, 9999.0)]
@@ -45,10 +45,5 @@ namespace SushiDelivery.Domain
         [Description("ProductIngredients")]
         [Display(Name = "ProductIngredients")]
         public ICollection<IIngredientId> Ingredients { get; } = new List<IIngredientId>();
-
-        public Product(string name)
-        {
-            Name = name;
-        }
     }
 }

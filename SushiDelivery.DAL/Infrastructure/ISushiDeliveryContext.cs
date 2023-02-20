@@ -7,10 +7,6 @@ namespace SushiDelivery.DAL.Infrastructure
     /// </summary>
     internal interface ISushiDeliveryContext : IDisposable
     {
-        #region Properties
-
-        DbSet<Models.Customer> Customers { get; set; }
-
-        #endregion
+        DbSet<Models.Customer> Customers { get; }
     }
 }

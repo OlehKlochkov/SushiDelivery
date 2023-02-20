@@ -1,18 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols;
+using System.Configuration;
+using System.Reflection;
 
 namespace SushiDelivery.DAL.Infrastructure
 {
     internal class ContextFactory : IContextFactory, IDesignTimeDbContextFactory<SushiDeliveryDbContext>
     {
-
-        #region Constants
-
-        private const string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projects\\SushiDelivery\\SushiDeliveryDb.mdf;Integrated Security = True; Connect Timeout = 30";
-
-        #endregion
-
-        #region Methods
+        private const string ConfigFileName = "appsettings.json";
+        private const string ConnectionStringName = "DefaultConnection";
 
         /// <summary>
         /// Creates a new database context.
@@ -39,12 +37,24 @@ namespace SushiDelivery.DAL.Infrastructure
         /// <returns></returns>
         private static SushiDeliveryDbContext CreateInternal()
         {
+            var connectionString = GetConnectionString();
+
             var optionsBuilder = new DbContextOptionsBuilder<SushiDeliveryDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
 
             return new SushiDeliveryDbContext(optionsBuilder.Options);
         }
 
-        #endregion
+        private static string? GetConnectionString()
+        {
+            //string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            //UriBuilder uri = new UriBuilder(assemblyLocation);
+            //string path = Uri.UnescapeDataString(uri.Path);
+            //var codeBase = Path.GetDirectoryName(path);
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile(ConfigFileName)
+                .Build();
+            return configuration.GetConnectionString(ConnectionStringName);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using SushiDelivery.DAL.Models;
 using SushiDelivery.Domain;
 
 namespace SushiDelivery.DAL.Infrastructure
@@ -9,43 +10,58 @@ namespace SushiDelivery.DAL.Infrastructure
     /// </summary>
     internal partial class SushiDeliveryDbContext : DbContext, ISushiDeliveryContext
     {
-        #region .ctor
-
         public SushiDeliveryDbContext(DbContextOptions<SushiDeliveryDbContext> options)
             : base(options)
         {
         }
 
-        #endregion
+        public DbSet<Models.Customer> Customers => Set<Models.Customer>();
 
-        #region Properties
+        public override int SaveChanges()
+        {
+            ProcessUpdatedEntities();
 
-        public virtual DbSet<Models.Customer> Customers { get; set; }
+            ProcessDeletedEntities();
 
-        #endregion
-
-        #region Methods
+            return base.SaveChanges();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var converter = new ValueConverter<Id<ICustomerId>, Guid>(
-              v => (Guid)v,
-              v => (Id<ICustomerId>)v);
-
-            modelBuilder.Entity<Models.Customer>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK__Customer");
-                entity.Property(e => e.Id).HasConversion(converter)
-                .HasColumnType("uniqueidentifier")
-                .IsRequired()
-                .ValueGeneratedNever();
-            });
-
             OnModelCreatingPartial(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        private IEnumerable<IEntityBase> ProcessDeletedEntities()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is IEntityBase && e.State == EntityState.Deleted)
+                .Select(o => (IEntityBase)o.Entity);
 
-        #endregion
+            foreach (IEntityBase entity in entries)
+            {
+                entity.DeletedDate = DateTime.UtcNow;
+                entity.IsDeleted = true;
+            }
+
+            return entries;
+        }
+
+        private IEnumerable<IEntityBase> ProcessUpdatedEntities()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is IEntityBase && e.State == EntityState.Modified)
+                .Select(o => (IEntityBase)o.Entity);
+
+            foreach (IEntityBase entity in entries)
+            {
+                entity.UpdatedDate = DateTime.UtcNow;
+            }
+
+            return entries;
+        }
     }
 }

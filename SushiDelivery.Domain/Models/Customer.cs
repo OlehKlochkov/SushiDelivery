@@ -23,7 +23,7 @@ namespace SushiDelivery.Domain
         [StringLength(256)]
         [Description("CustomerLoginName")]
         [Display(Name = "CustomerLoginName")]
-        public string LoginName { get; set; }
+        public required string LoginName { get; set; }
 
         [Phone]
         [DataType(DataType.PhoneNumber)]
@@ -40,11 +40,5 @@ namespace SushiDelivery.Domain
         [Description("CustomerAddress")]
         [Display(Name = "CustomerAddress")]
         public string? Address { get; set; }
-
-        public Customer(string loginName)
-        {
-            LoginName = loginName;
-        }
-
     }
 }

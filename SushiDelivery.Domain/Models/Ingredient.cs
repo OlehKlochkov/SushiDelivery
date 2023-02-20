@@ -22,7 +22,7 @@ namespace SushiDelivery.Domain
         [StringLength(1024)]
         [Description("IngredientName")]
         [Display(Name = "IngredientName")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [MinLength(1)]
         [MaxLength(2048)]
@@ -30,10 +30,5 @@ namespace SushiDelivery.Domain
         [Description("IngredientDescription")]
         [Display(Name = "IngredientDescription")]
         public string? Description { get; set; }
-
-        public Ingredient(string name)
-        {
-            Name = name;
-        }
     }
 }
