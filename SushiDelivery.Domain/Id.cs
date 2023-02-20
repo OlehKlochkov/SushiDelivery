@@ -24,7 +24,7 @@
         }
 
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Id<T> item && _value.Equals(item._value);
         }
@@ -36,7 +36,7 @@
 
         public static bool operator ==(Id<T> x, Id<T> y)
         {
-            return x==y;
+            return x._value == y._value;
         }
 
         public static bool operator !=(Id<T> x, Id<T> y)
