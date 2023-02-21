@@ -11,7 +11,7 @@ using SushiDelivery.DAL.Infrastructure;
 namespace SushiDelivery.DAL.Migrations
 {
     [DbContext(typeof(SushiDeliveryDbContext))]
-    [Migration("20230220191102_Initial")]
+    [Migration("20230221160017_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

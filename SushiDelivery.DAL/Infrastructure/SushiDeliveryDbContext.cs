@@ -15,7 +15,7 @@ namespace SushiDelivery.DAL.Infrastructure
         {
         }
 
-        public DbSet<Models.Customer> Customers => Set<Models.Customer>();
+        // public DbSet<Models.Customer> Customers => Set<Models.Customer>();
 
         public override int SaveChanges()
         {
@@ -32,6 +32,8 @@ namespace SushiDelivery.DAL.Infrastructure
 
             base.OnModelCreating(modelBuilder);
         }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         private IEnumerable<IEntityBase> ProcessDeletedEntities()
         {
