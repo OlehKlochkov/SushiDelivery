@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiDelivery.DAL.Models
 {
-    internal interface IEntityBase
+    public interface IEntityBase
     {
         [Required]
         [DataType(DataType.DateTime)]
@@ -13,7 +13,7 @@ namespace SushiDelivery.DAL.Models
         [Display(Name = "CreatedDate")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DefaultValue("getutcdate()")]
-        DateTimeOffset CreatedDate
+        public DateTimeOffset CreatedDate
         {
             get => CreatedDate;
             set => CreatedDate = value;
@@ -25,7 +25,7 @@ namespace SushiDelivery.DAL.Models
         [Display(Name = "UpdatedDate")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DefaultValue("getutcdate()")]
-        DateTimeOffset UpdatedDate
+        public DateTimeOffset UpdatedDate
         {
             get => UpdatedDate;
             set => UpdatedDate = value;
@@ -34,7 +34,7 @@ namespace SushiDelivery.DAL.Models
         [DataType(DataType.DateTime)]
         [Description("DeletedDate")]
         [Display(Name = "DeletedDate")]
-        DateTimeOffset? DeletedDate
+        public DateTimeOffset? DeletedDate
         {
             get => DeletedDate;
             set => DeletedDate = value;
@@ -45,7 +45,7 @@ namespace SushiDelivery.DAL.Models
         [Display(Name = "IsDeleted")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DefaultValue("false")]
-        bool IsDeleted
+        public bool IsDeleted
         {
             get => IsDeleted;
             set => IsDeleted = value;
@@ -57,7 +57,7 @@ namespace SushiDelivery.DAL.Models
         [Description("TimeStamp")]
         [Display(Name = "TimeStamp")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        byte[] TimeStamp
+        public byte[] TimeStamp
         {
             get => TimeStamp;
             set => TimeStamp = value;

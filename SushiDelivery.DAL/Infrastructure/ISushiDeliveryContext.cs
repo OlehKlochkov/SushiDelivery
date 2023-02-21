@@ -7,6 +7,6 @@ namespace SushiDelivery.DAL.Infrastructure
     /// </summary>
     internal interface ISushiDeliveryContext : IDisposable
     {
-        // DbSet<Models.Customer> Customers { get; }
+        DbSet<Models.Customer> Customers { get; }
     }
 }

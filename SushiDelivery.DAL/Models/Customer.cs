@@ -5,8 +5,7 @@ using System.ComponentModel;
 
 namespace SushiDelivery.DAL.Models
 {
-    internal class Customer : Domain.Customer, IEntityBase
+    public class Customer : Domain.Customer, IEntityBase
     {
     }
-
 }
