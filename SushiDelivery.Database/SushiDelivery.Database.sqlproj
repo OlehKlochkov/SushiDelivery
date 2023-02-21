@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo.Categories.sql" />
-    <Build Include="dbo.Customes.sql" />
+    <Build Include="dbo.Customers.sql" />
     <Build Include="dbo.Ingredients.sql" />
     <Build Include="dbo.Products.sql" />
     <Build Include="dbo.ProductIngredients.sql" />
