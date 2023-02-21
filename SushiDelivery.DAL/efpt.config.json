@@ -1,5 +1,5 @@
 ﻿{
-   "CodeGenerationMode": 2,
+   "CodeGenerationMode": 3,
    "ContextClassName": "DatabaseContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
@@ -7,7 +7,7 @@
    "IncludeConnectionString": false,
    "ModelNamespace": null,
    "OutputContextPath": null,
-   "OutputPath": "Models",
+   "OutputPath": "ModelsX",
    "PreserveCasingWithRegex": true,
    "ProjectRootNamespace": "SushiDelivery.DAL",
    "Schemas": null,
@@ -15,27 +15,27 @@
    "SelectedToBeGenerated": 0,
    "Tables": [
       {
-         "Name": "[dbo].[Categories]",
+         "Name": "[dbo].[Customers]",
          "ObjectType": 0
       }
    ],
-   "UiHint": "SushiDeliveryDb.mdf",
+   "UiHint": "SushiDelivery.Database\\SushiDelivery.Database.sqlproj",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDateOnlyTimeOnly": false,
-   "UseDbContextSplitting": false,
+   "UseDbContextSplitting": true,
    "UseFluentApiOnly": false,
    "UseHandleBars": false,
-   "UseHierarchyId": false,
+   "UseHierarchyId": true,
    "UseInflector": true,
    "UseLegacyPluralizer": false,
-   "UseManyToManyEntity": false,
+   "UseManyToManyEntity": true,
    "UseNoDefaultConstructor": false,
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
-   "UseNullableReferences": false,
+   "UseNullableReferences": true,
    "UseSchemaFolders": false,
-   "UseSpatial": false,
+   "UseSpatial": true,
    "UseT4": false
 }
