@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace SushiDelivery.DAL.Infrastructure
 {
@@ -8,9 +9,13 @@ namespace SushiDelivery.DAL.Infrastructure
 
         #region Constants
 
-        private const string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projects\\SushiDelivery\\SushiDeliveryDb.mdf;Integrated Security = True; Connect Timeout = 30";
+        private const string ConfigFileName = "appsettings.json";
+        private const string ConnectionStringName = "DefaultConnection";
 
         #endregion
+
+        private static readonly IConfigurationRoot _configuration 
+            = new ConfigurationBuilder().AddJsonFile(ConfigFileName).Build();
 
         #region Methods
 
@@ -39,10 +44,21 @@ namespace SushiDelivery.DAL.Infrastructure
         /// <returns></returns>
         private static SushiDeliveryDbContext CreateInternal()
         {
+            var connectionString = GetConnectionString();
+
             var optionsBuilder = new DbContextOptionsBuilder<SushiDeliveryDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
 
             return new SushiDeliveryDbContext(optionsBuilder.Options);
+        }
+
+        /// <summary>
+        /// Gets connection string.
+        /// </summary>
+        /// <returns>Connection string</returns>
+        private static string? GetConnectionString()
+        {
+            return _configuration.GetConnectionString(ConnectionStringName);
         }
 
         #endregion

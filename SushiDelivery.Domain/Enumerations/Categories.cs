@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SushiDelivery.Domain.Models.Enumerations
+namespace SushiDelivery.Domain.Enumerations
 {
     public enum Categories
     {
