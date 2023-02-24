@@ -1,4 +1,4 @@
-﻿namespace SushiDelivery.Domain
+﻿namespace SushiDelivery.Domain.Models
 {
     /// <summary>
     /// Defines Customer entity.
@@ -9,7 +9,8 @@
 
         public string LoginName { get; set; }
 
-        public string Address { get; set; }
+        public string? Phone { get; set; }
 
+        public string? Address { get; set; }
     }
 }
