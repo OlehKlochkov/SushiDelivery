@@ -11,7 +11,7 @@ namespace SushiDelivery.DAL.Models
         [Editable(false)]
         [Description("CreatedDate")]
         [Display(Name = "CreatedDate")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DefaultValue("getutcdate()")]
         DateTimeOffset CreatedDate
         {
@@ -44,7 +44,6 @@ namespace SushiDelivery.DAL.Models
         [Description("IsDeleted")]
         [Display(Name = "IsDeleted")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [DefaultValue("false")]
         bool IsDeleted
         {
             get => IsDeleted;
