@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SushiDelivery.Domain.Models;
+using SushiDelivery.DAL.Configurations;
 
 namespace SushiDelivery.DAL.Infrastructure
 {
@@ -27,14 +27,7 @@ namespace SushiDelivery.DAL.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.Customer>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK__Customer");
-                entity.Property(e => e.Id).HasConversion(ValueConverterHelper<ICustomerId>.GetValueConverter())
-                .HasColumnType("uniqueidentifier")
-                .IsRequired()
-                .ValueGeneratedNever();
-            });
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
 
             OnModelCreatingPartial(modelBuilder);
         }
