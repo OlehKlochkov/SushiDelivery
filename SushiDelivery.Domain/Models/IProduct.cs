@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Xml.Linq;
 using SushiDelivery.Domain.Enumerations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiDelivery.Domain.Models
 {
@@ -36,6 +36,7 @@ namespace SushiDelivery.Domain.Models
         [Display(Name = "ProductCategory")]
         Categories Category { get; set; }
 
+        [NotMapped]
         [Description("ProductIngredients")]
         [Display(Name = "ProductIngredients")]
         ICollection<IIngredientId> Ingredients { get; }

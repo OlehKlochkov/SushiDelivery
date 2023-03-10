@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Xml.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiDelivery.Domain.Models
 {
@@ -24,5 +25,9 @@ namespace SushiDelivery.Domain.Models
         [Description("IngredientDescription")]
         [Display(Name = "IngredientDescription")]
         string? Description { get; set; }
+
+        [NotMapped]
+        public ICollection<IProductId> Products { get; set; }
+
     }
 }
