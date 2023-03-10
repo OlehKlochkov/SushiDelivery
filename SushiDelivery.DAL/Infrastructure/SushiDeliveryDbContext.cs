@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SushiDelivery.DAL.Configurations;
+using SushiDelivery.DAL.Models;
 
 namespace SushiDelivery.DAL.Infrastructure
 {
@@ -19,7 +20,14 @@ namespace SushiDelivery.DAL.Infrastructure
 
         #region Properties
 
-        public virtual DbSet<Models.Customer> Customers { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Ingredient> Ingredients { get; set; }
+
+        public virtual DbSet<ProductIngredient> ProductIngredients { get; set; }
+
 
         #endregion
 
@@ -28,6 +36,9 @@ namespace SushiDelivery.DAL.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new IngredientConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductIngredientConfiguration());
 
             OnModelCreatingPartial(modelBuilder);
         }
