@@ -1,4 +1,4 @@
-﻿namespace SushiDelivery.Domain
+﻿namespace SushiDelivery.Domain.Models
 {
     /// <summary>
     /// Defines order interface.
@@ -6,6 +6,7 @@
     public interface IOrder : IOrderId
     {
         IList<IProductId> Products { get; set; }
-        ICustomerId Customer { get; set; }
+
+        ICustomerId CustomerId { get; set; }
     }
 }

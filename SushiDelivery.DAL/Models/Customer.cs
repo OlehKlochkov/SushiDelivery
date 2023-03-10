@@ -1,10 +1,7 @@
-﻿
-using SushiDelivery.Domain;
-
-namespace SushiDelivery.DAL.Models
+﻿namespace SushiDelivery.DAL.Models
 {
-    internal class Customer : Domain.Customer, IEntityBase
+    internal class Customer : Domain.Models.Customer, IEntityBase
     {
-    }
 
+    }
 }

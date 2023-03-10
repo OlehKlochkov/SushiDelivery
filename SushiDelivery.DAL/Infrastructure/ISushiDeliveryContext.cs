@@ -11,6 +11,10 @@ namespace SushiDelivery.DAL.Infrastructure
 
         DbSet<Models.Customer> Customers { get; set; }
 
+        DbSet<Models.Product> Products { get; set; }
+
+        DbSet<Models.Ingredient> Ingredients { get; set; }
+
         #endregion
     }
 }
