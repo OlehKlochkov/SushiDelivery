@@ -23,10 +23,12 @@ namespace SushiDelivery.DAL.Configurations
 
             entity.HasOne(e => e.Product)
                 .WithMany(p => p.ProductIngredients)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(e => e.ProductId);
 
             entity.HasOne(e => e.Ingredient)
                 .WithMany(i => i.ProductIngredients)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(e => e.IngredientId);
 
 

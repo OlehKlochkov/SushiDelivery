@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\ProductAggregate\**" />
+    <EmbeddedResource Remove="Models\ProductAggregate\**" />
+    <None Remove="Models\ProductAggregate\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SushiDelivery.Domain\SushiDelivery.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
