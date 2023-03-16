@@ -1,3 +1,5 @@
+using SushiDelivery.Domain.Models;
+
 namespace SushiDelivery.Domain.Tests
 {
     public class IdTests
