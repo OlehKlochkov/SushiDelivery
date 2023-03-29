@@ -7,7 +7,7 @@ namespace SushiDelivery.DAL.Infrastructure
     /// <summary>
     /// The database context.
     /// </summary>
-    internal partial class SushiDeliveryDbContext : DbContext, ISushiDeliveryContext
+    public class SushiDeliveryDbContext : DbContext, ISushiDeliveryContext
     {
         #region .ctor
 
@@ -39,11 +39,23 @@ namespace SushiDelivery.DAL.Infrastructure
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new IngredientConfiguration());
             modelBuilder.ApplyConfiguration(new ProductIngredientConfiguration());
-
-            OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        public DbSet<TEntity> GetDbSet<TEntity>() where TEntity : class
+        {
+            return Set<TEntity>();
+        }
+
+        public void SetModified<TEntity>(TEntity entity) where TEntity : class
+        {
+            Entry(entity).State = EntityState.Modified;
+        }
+
+        public void SetDetached<TEntity>(TEntity entity) where TEntity : class
+        {
+            Entry(entity).State = EntityState.Detached;
+        }
+
 
         #endregion
     }

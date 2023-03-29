@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace SushiDelivery.DAL.Infrastructure
 {
-    internal class ContextFactory : IContextFactory, IDesignTimeDbContextFactory<SushiDeliveryDbContext>
+    public class ContextFactory : IContextFactory, IDesignTimeDbContextFactory<SushiDeliveryDbContext>
     {
 
         #region Constants

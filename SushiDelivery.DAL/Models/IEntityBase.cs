@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiDelivery.DAL.Models
 {
-    internal interface IEntityBase
+    public interface IEntityBase
     {
         [Required]
         [DataType(DataType.DateTime)]

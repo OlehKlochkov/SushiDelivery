@@ -1,6 +1,6 @@
 ﻿namespace SushiDelivery.DAL.Models
 {
-    internal class Customer : Domain.Models.Customer, IEntityBase
+    public class Customer : Domain.Models.Customer, IEntityBase
     {
 
     }

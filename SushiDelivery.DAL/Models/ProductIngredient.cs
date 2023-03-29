@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SushiDelivery.DAL.Models
 {
-    internal class ProductIngredient
+    public class ProductIngredient
     {
         [Key, Required]
         public int Id { get; set; }
