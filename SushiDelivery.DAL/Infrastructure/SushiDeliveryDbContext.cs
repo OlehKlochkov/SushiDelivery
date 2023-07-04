@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using SushiDelivery.DAL.Configurations;
 using SushiDelivery.DAL.Models;
 
@@ -56,6 +57,50 @@ namespace SushiDelivery.DAL.Infrastructure
             Entry(entity).State = EntityState.Detached;
         }
 
+        public override int SaveChanges()
+        {
+            ProcessUpdatedEntities();
+
+            ProcessDeletedEntities();
+
+            ChangeTracker.DetectChanges();
+
+            return base.SaveChanges();
+        }
+
+        private IEnumerable<IEntityBase> ProcessDeletedEntities()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is IEntityBase && e.State == EntityState.Deleted)
+                .Select(o => o)
+                .ToArray();
+
+            foreach (var entity in entries)
+            {
+                entity.State = EntityState.Modified;
+                ((IEntityBase)entity.Entity).DeletedDate = DateTimeOffset.UtcNow;
+                ((IEntityBase)entity.Entity).IsDeleted = true;
+            }
+
+            return entries.Select(o => (IEntityBase)o.Entity);
+        }
+
+        private IEnumerable<IEntityBase> ProcessUpdatedEntities()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is IEntityBase && e.State == EntityState.Modified)
+                .Select(o => (IEntityBase)o.Entity)
+                .ToArray();
+
+            foreach (IEntityBase entity in entries)
+            {
+                entity.UpdatedDate = DateTimeOffset.UtcNow;
+            }
+
+            return entries;
+        }
 
         #endregion
     }

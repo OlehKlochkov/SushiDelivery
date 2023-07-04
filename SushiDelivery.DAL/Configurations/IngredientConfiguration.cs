@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SushiDelivery.DAL.Infrastructure;
 using SushiDelivery.Domain.Models;
+using SushiDelivery.DAL.Models;
 
 namespace SushiDelivery.DAL.Configurations
 {
@@ -20,13 +21,16 @@ namespace SushiDelivery.DAL.Configurations
             entity.Property(e => e.Id)
                 .HasColumnType("uniqueidentifier")
                 .IsRequired()
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("NEWSEQUENTIALID()")
+                .ValueGeneratedOnAdd()
                 .HasConversion(ValueConverterHelper<IIngredientId>.GetValueConverter())
                 .HasColumnOrder(IdIndex);
 
             entity.Property(e => e.Name).IsRequired(true).HasColumnOrder(NameIndex);
             entity.Property(e => e.Description).HasColumnOrder(DescriptionIndex);
-            
+
+            entity.HasQueryFilter(o => !((IEntityBase)o).IsDeleted);
+
             ConfigureBase(entity);
         }
     }

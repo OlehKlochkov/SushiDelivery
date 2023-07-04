@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SushiDelivery.DAL.Infrastructure;
 
@@ -11,9 +12,11 @@ using SushiDelivery.DAL.Infrastructure;
 namespace SushiDelivery.DAL.Migrations
 {
     [DbContext(typeof(SushiDeliveryDbContext))]
-    partial class SushiDeliveryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230704183355_ChangeDateDeleted")]
+    partial class ChangeDateDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +44,7 @@ namespace SushiDelivery.DAL.Migrations
                         .HasColumnOrder(101)
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<DateTimeOffset?>("DeletedDate")
+                    b.Property<DateTimeOffset>("DeletedDate")
                         .HasColumnType("datetimeoffset")
                         .HasColumnOrder(103);
 
@@ -64,7 +67,6 @@ namespace SushiDelivery.DAL.Migrations
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
-                        .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion")
                         .HasColumnOrder(105);
@@ -101,7 +103,7 @@ namespace SushiDelivery.DAL.Migrations
                         .HasColumnOrder(101)
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<DateTimeOffset?>("DeletedDate")
+                    b.Property<DateTimeOffset>("DeletedDate")
                         .HasColumnType("datetimeoffset")
                         .HasColumnOrder(103);
 
@@ -122,7 +124,6 @@ namespace SushiDelivery.DAL.Migrations
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
-                        .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion")
                         .HasColumnOrder(105);
@@ -159,7 +160,7 @@ namespace SushiDelivery.DAL.Migrations
                         .HasColumnOrder(101)
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<DateTimeOffset?>("DeletedDate")
+                    b.Property<DateTimeOffset>("DeletedDate")
                         .HasColumnType("datetimeoffset")
                         .HasColumnOrder(103);
 
@@ -184,7 +185,6 @@ namespace SushiDelivery.DAL.Migrations
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
-                        .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion")
                         .HasColumnOrder(105);

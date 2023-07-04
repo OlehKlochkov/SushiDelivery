@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SushiDelivery.DAL.Infrastructure;
 using System.ComponentModel;
 
@@ -22,6 +23,22 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
             
             //Assert
             Assert.NotNull(context);
+        }
+
+        [Fact]
+        [Description("Test verifies that factory creates instance of ISushiDeliveryContext.")]
+        public void CreateDbContext_ApplyMigrations()
+        {
+            //Act
+            var context = _contextFactory.CreateDbContext(new string[] { });
+
+            //Assert
+            Assert.NotNull(context);
+
+            context.Database.Migrate();
+
+            //Assert
+            Assert.Empty(context.Database.GetPendingMigrations());
         }
     }
 }

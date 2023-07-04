@@ -31,7 +31,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies get by id entity from database.")]
-        public async void TestGetByIdAsync()
+        public void TestGetByIdAsync()
         {
             //TODO:
         }

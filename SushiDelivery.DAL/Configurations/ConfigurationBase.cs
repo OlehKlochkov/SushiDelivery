@@ -21,20 +21,22 @@ namespace SushiDelivery.DAL.Configurations
         protected void ConfigureBase(EntityTypeBuilder entity)
         {
             entity.Property<DateTimeOffset>(nameof(IEntityBase.CreatedDate))
+                .IsRequired()
                 .HasDefaultValueSql("getutcdate()")
                 .ValueGeneratedOnAdd()
                 .HasColumnOrder(CreatedDateIndex);
 
             entity.Property<DateTimeOffset>(nameof(IEntityBase.UpdatedDate))
+                .IsRequired()
                 .HasDefaultValueSql("getutcdate()")
-                .HasColumnOrder(UpdatedDateIndex)
-                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Save);
+                .HasColumnOrder(UpdatedDateIndex);
 
-            entity.Property<DateTimeOffset>(nameof(IEntityBase.DeletedDate))
-                .HasDefaultValueSql("getutcdate()")
+            entity.Property<DateTimeOffset?>(nameof(IEntityBase.DeletedDate))
+                .IsRequired(false)
                 .HasColumnOrder(DeletedDateDateIndex);
 
             entity.Property<bool>(nameof(IEntityBase.IsDeleted))
+                .IsRequired()
                 .HasDefaultValueSql("0")
                 .HasColumnOrder(IsDeletedIndex);
 
