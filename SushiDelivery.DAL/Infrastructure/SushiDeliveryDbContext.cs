@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using SushiDelivery.DAL.Configurations;
 using SushiDelivery.DAL.Models;
 
@@ -7,7 +8,7 @@ namespace SushiDelivery.DAL.Infrastructure
     /// <summary>
     /// The database context.
     /// </summary>
-    internal partial class SushiDeliveryDbContext : DbContext, ISushiDeliveryContext
+    public class SushiDeliveryDbContext : DbContext, ISushiDeliveryContext
     {
         #region .ctor
 
@@ -39,11 +40,67 @@ namespace SushiDelivery.DAL.Infrastructure
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new IngredientConfiguration());
             modelBuilder.ApplyConfiguration(new ProductIngredientConfiguration());
-
-            OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        public DbSet<TEntity> GetDbSet<TEntity>() where TEntity : class
+        {
+            return Set<TEntity>();
+        }
+
+        public void SetModified<TEntity>(TEntity entity) where TEntity : class
+        {
+            Entry(entity).State = EntityState.Modified;
+        }
+
+        public void SetDetached<TEntity>(TEntity entity) where TEntity : class
+        {
+            Entry(entity).State = EntityState.Detached;
+        }
+
+        public override int SaveChanges()
+        {
+            ProcessUpdatedEntities();
+
+            ProcessDeletedEntities();
+
+            ChangeTracker.DetectChanges();
+
+            return base.SaveChanges();
+        }
+
+        private IEnumerable<IEntityBase> ProcessDeletedEntities()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is IEntityBase && e.State == EntityState.Deleted)
+                .Select(o => o)
+                .ToArray();
+
+            foreach (var entity in entries)
+            {
+                entity.State = EntityState.Modified;
+                ((IEntityBase)entity.Entity).DeletedDate = DateTimeOffset.UtcNow;
+                ((IEntityBase)entity.Entity).IsDeleted = true;
+            }
+
+            return entries.Select(o => (IEntityBase)o.Entity);
+        }
+
+        private IEnumerable<IEntityBase> ProcessUpdatedEntities()
+        {
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is IEntityBase && e.State == EntityState.Modified)
+                .Select(o => (IEntityBase)o.Entity)
+                .ToArray();
+
+            foreach (IEntityBase entity in entries)
+            {
+                entity.UpdatedDate = DateTimeOffset.UtcNow;
+            }
+
+            return entries;
+        }
 
         #endregion
     }

@@ -5,7 +5,7 @@ namespace SushiDelivery.DAL.Infrastructure
     /// <summary>
     /// Interface for the database context.
     /// </summary>
-    internal interface ISushiDeliveryContext : IDisposable
+    public interface ISushiDeliveryContext : IDisposable
     {
         #region Properties
 
@@ -14,6 +14,18 @@ namespace SushiDelivery.DAL.Infrastructure
         DbSet<Models.Product> Products { get; set; }
 
         DbSet<Models.Ingredient> Ingredients { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        DbSet<TEntity> GetDbSet<TEntity>() where TEntity : class;
+
+        void SetModified<TEntity>(TEntity entity) where TEntity : class;
+
+        void SetDetached<TEntity>(TEntity entity) where TEntity : class;
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
         #endregion
     }

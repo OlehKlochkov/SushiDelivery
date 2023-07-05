@@ -18,7 +18,7 @@ namespace SushiDelivery.Domain.Tests
             Assert.Equal((Guid)productId, (Guid)customerId);
             Assert.False(productId.Equals(customerId));
             Assert.Equal(productId.GetHashCode(), customerId.GetHashCode());
-            Assert.True(productId != new Id<IProductId>(guid));
+            Assert.True(productId == new Id<IProductId>(guid));
         }
     }
 }

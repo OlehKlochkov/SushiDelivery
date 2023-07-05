@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SushiDelivery.DAL.Infrastructure;
 
@@ -11,13 +12,15 @@ using SushiDelivery.DAL.Infrastructure;
 namespace SushiDelivery.DAL.Migrations
 {
     [DbContext(typeof(SushiDeliveryDbContext))]
-    partial class SushiDeliveryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230323115702_AddUniqueConstraint")]
+    partial class AddUniqueConstraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -25,10 +28,8 @@ namespace SushiDelivery.DAL.Migrations
             modelBuilder.Entity("SushiDelivery.DAL.Models.Customer", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(1)
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .HasColumnOrder(1);
 
                     b.Property<string>("Address")
                         .HasMaxLength(256)
@@ -41,9 +42,11 @@ namespace SushiDelivery.DAL.Migrations
                         .HasColumnOrder(101)
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<DateTimeOffset?>("DeletedDate")
+                    b.Property<DateTimeOffset>("DeletedDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasColumnOrder(103);
+                        .HasColumnOrder(103)
+                        .HasDefaultValueSql("getutcdate()");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -64,7 +67,6 @@ namespace SushiDelivery.DAL.Migrations
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
-                        .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion")
                         .HasColumnOrder(105);
@@ -90,10 +92,8 @@ namespace SushiDelivery.DAL.Migrations
             modelBuilder.Entity("SushiDelivery.DAL.Models.Ingredient", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(1)
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .HasColumnOrder(1);
 
                     b.Property<DateTimeOffset>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -101,9 +101,11 @@ namespace SushiDelivery.DAL.Migrations
                         .HasColumnOrder(101)
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<DateTimeOffset?>("DeletedDate")
+                    b.Property<DateTimeOffset>("DeletedDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasColumnOrder(103);
+                        .HasColumnOrder(103)
+                        .HasDefaultValueSql("getutcdate()");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)")
@@ -122,7 +124,6 @@ namespace SushiDelivery.DAL.Migrations
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
-                        .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion")
                         .HasColumnOrder(105);
@@ -144,10 +145,8 @@ namespace SushiDelivery.DAL.Migrations
             modelBuilder.Entity("SushiDelivery.DAL.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(1)
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .HasColumnOrder(1);
 
                     b.Property<int>("Category")
                         .HasColumnType("int")
@@ -159,9 +158,11 @@ namespace SushiDelivery.DAL.Migrations
                         .HasColumnOrder(101)
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<DateTimeOffset?>("DeletedDate")
+                    b.Property<DateTimeOffset>("DeletedDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasColumnOrder(103);
+                        .HasColumnOrder(103)
+                        .HasDefaultValueSql("getutcdate()");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit")
@@ -184,7 +185,6 @@ namespace SushiDelivery.DAL.Migrations
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
-                        .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion")
                         .HasColumnOrder(105);
