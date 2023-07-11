@@ -9,7 +9,7 @@
         where TEntity : class
         where TEntityId : struct
     {
-        Task<TEntity> GetByIdAsync(TEntityId id);
+        Task<TEntity?> GetByIdAsync(TEntityId id);
 
         Task SaveAsync(TEntity entity);
 

@@ -7,19 +7,16 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
     public class ContextFactoryTests
     {
 
-        private ContextFactory _contextFactory;
+        private readonly ContextFactory _contextFactory;
 
-        public ContextFactoryTests()
-        {
-            _contextFactory = new ContextFactory();
-        }
+        public ContextFactoryTests() => _contextFactory = new ContextFactory();
 
         [Fact]
         [Description("Test verifies that factory creates instance of ISushiDeliveryContext.")]
         public void TestCreate_ISushiDeliveryContext()
         {
             //Act
-            ISushiDeliveryContext context = _contextFactory.CreateDbContext();
+            var context = _contextFactory.CreateDbContext();
             
             //Assert
             Assert.NotNull(context);

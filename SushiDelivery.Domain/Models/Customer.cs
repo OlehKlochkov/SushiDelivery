@@ -7,7 +7,7 @@
     {
         public Id<ICustomerId> Id { get; set; }
 
-        public string LoginName { get; set; }
+        public string LoginName { get; set; } = string.Empty;
 
         public string? Phone { get; set; }
 

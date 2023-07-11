@@ -14,16 +14,13 @@ namespace SushiDelivery.DAL.Repositories
 
         private readonly ISushiDeliveryContext _context;
 
-        private IProductRepository _productRepository;
+        private IProductRepository? _productRepository;
 
-        private ICustomerRepository _customerRepository;
+        private ICustomerRepository? _customerRepository;
 
         #region Contructor
 
-        public UnitOfWork(ISushiDeliveryContext context)
-        {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-        }
+        public UnitOfWork(ISushiDeliveryContext context) => _context = context ?? throw new ArgumentNullException(nameof(context));
 
         #endregion
 
@@ -31,10 +28,7 @@ namespace SushiDelivery.DAL.Repositories
         {
             get
             {
-                if (_productRepository == null)
-                {
-                    _productRepository = new ProductRepository(_context);
-                }
+                _productRepository ??= new ProductRepository(_context);
 
                 return _productRepository;
             }
@@ -44,19 +38,13 @@ namespace SushiDelivery.DAL.Repositories
         {
             get
             {
-                if (_customerRepository == null)
-                {
-                    _customerRepository = new CustomerRepository(_context);
-                }
+                _customerRepository ??= new CustomerRepository(_context);
 
                 return _customerRepository;
             }
         }
 
-        public async Task SaveChanges()
-        {
-            await _context.SaveChangesAsync();
-        }
+        public async Task SaveChanges() => await _context.SaveChangesAsync();
 
         #region IDisposable
 

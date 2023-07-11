@@ -10,10 +10,10 @@ namespace SushiDelivery.DAL.Models
 
         public Id<IProductId> ProductId { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual Product? Product { get; set; }
 
         public Id<IIngredientId> IngredientId { get; set; }
 
-        public virtual Ingredient Ingredient { get; set; }
+        public virtual Ingredient? Ingredient { get; set; }
     }
 }
