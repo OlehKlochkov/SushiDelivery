@@ -5,7 +5,7 @@ using SushiDelivery.DAL.Repositories;
 
 namespace SushiDelivery.DAL.Tests.Repositories
 {
-    public static class GenericRepositoryTests
+    internal static class GenericRepositoryTests
     {
         public static async Task TestSaveAsync<TEntity, TEntityId>(Mock<ISushiDeliveryContext> contextMock,
             GenericRepository<TEntity, TEntityId> repository, TEntity entity)

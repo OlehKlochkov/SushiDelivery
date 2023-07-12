@@ -5,7 +5,7 @@ using SushiDelivery.Domain.Models;
 
 namespace SushiDelivery.DAL.Repositories
 {
-    public class ProductRepository : GenericRepository<Models.Product, Id<IProductId>>, IProductRepository
+    internal class ProductRepository : GenericRepository<Models.Product, Id<IProductId>>, IProductRepository
     {
         public ProductRepository(ISushiDeliveryContext context) : base(context)
         {

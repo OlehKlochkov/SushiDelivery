@@ -38,7 +38,7 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
 
         [Fact]
         [Description("Test verifies that new Id is generated and returned when entity is added.")]
-        public async void SaveChanges_AddNewRecord()
+        public async Task SaveChanges_AddNewRecord()
         {
             var customer = new Models.Customer()
             {
@@ -61,7 +61,7 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
 
         [Fact]
         [Description("Test verifies that update date is set when entity is updated.")]
-        public async void SaveChanges_UpdateRecord()
+        public async Task SaveChanges_UpdateRecord()
         {
             var utcNow1 = DateTimeOffset.UtcNow;
 
@@ -104,7 +104,7 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
 
         [Fact]
         [Description("Test verifies that deleted date is set when entity is deleted.")]
-        public async void SaveChanges_DeleteRecord()
+        public async Task SaveChanges_DeleteRecord()
         {
             var customer1 = new Models.Customer()
             {

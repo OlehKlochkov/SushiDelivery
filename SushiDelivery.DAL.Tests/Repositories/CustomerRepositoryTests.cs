@@ -26,7 +26,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies get by id entity from database.")]
-        public async void TestGetByIdAsync()
+        public async Task TestGetByIdAsync()
         {
             await GenericRepositoryTests.TestGetByIdAsync(
                 _contextMock, _customerRepository, _expectedCustomer, _expectedCustomer.Id);
@@ -34,14 +34,14 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies save data into the database.")]
-        public async void TestSaveCustomer()
+        public async Task TestSaveCustomer()
         {
             await GenericRepositoryTests.TestSaveAsync(_contextMock, _customerRepository, _expectedCustomer);
         }
 
         [Fact]
         [Description("Test verifies include data into the database.")]
-        public async void TestIncludeCustomer()
+        public async Task TestIncludeCustomer()
         {
             await GenericRepositoryTests.TestIncludeAsync(_contextMock, _customerRepository, _expectedCustomer);
         }

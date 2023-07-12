@@ -19,8 +19,8 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
         public void TestCreate_ISushiDeliveryContext()
         {
             //Act
-            ISushiDeliveryContext context = _contextFactory.CreateDbContext();
-            
+            using var context = _contextFactory.CreateDbContext();
+
             //Assert
             Assert.NotNull(context);
         }
@@ -30,15 +30,16 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
         public void CreateDbContext_ApplyMigrations()
         {
             //Act
-            var context = _contextFactory.CreateDbContext(new string[] { });
+            using (var context = _contextFactory.CreateDbContext(new string[] { }))
+            {
+                //Assert
+                Assert.NotNull(context);
 
-            //Assert
-            Assert.NotNull(context);
+                context.Database.Migrate();
 
-            context.Database.Migrate();
-
-            //Assert
-            Assert.Empty(context.Database.GetPendingMigrations());
+                //Assert
+                Assert.Empty(context.Database.GetPendingMigrations());
+            }
         }
     }
 }
