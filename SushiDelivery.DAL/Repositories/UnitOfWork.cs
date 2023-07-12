@@ -5,7 +5,7 @@ namespace SushiDelivery.DAL.Repositories
     /// <summary>
     /// Unit of work class shares a single database context.
     /// </summary>
-    public class UnitOfWork : IUnitOfWork
+    internal class UnitOfWork : IUnitOfWork
     {
         /// <summary>
         /// Flag that indicates whether object was disposed. 

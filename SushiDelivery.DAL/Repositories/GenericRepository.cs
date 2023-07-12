@@ -8,7 +8,7 @@ namespace SushiDelivery.DAL.Repositories
     /// Base repository for database operations.
     /// </summary>
     /// <typeparam name="TEntity">Type of entity.</typeparam>
-    public abstract class GenericRepository<TEntity, TEntityId> : IRepository<TEntity, TEntityId>
+    internal abstract class GenericRepository<TEntity, TEntityId> : IRepository<TEntity, TEntityId>
             where TEntity : class
             where TEntityId : struct
     {

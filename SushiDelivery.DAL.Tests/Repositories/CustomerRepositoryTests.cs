@@ -26,7 +26,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies get by id entity from database.")]
-        public async void TestGetByIdAsync()
+        public async Task TestGetByIdAsync()
         {
             await GenericRepositoryTests.TestGetByIdAsync(
                 _contextMock, _customerRepository, _expectedCustomer, _expectedCustomer.Id);
