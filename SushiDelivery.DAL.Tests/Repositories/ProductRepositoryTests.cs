@@ -38,7 +38,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies save data into the database.")]
-        public async void TestSaveProduct()
+        public async Task TestSaveProduct()
         {
             await GenericRepositoryTests.TestSaveAsync(_contextMock, _productRepository, _expectedProduct);
         }
@@ -46,7 +46,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies include data into the database.")]
-        public async void TestIncludeProduct()
+        public async Task TestIncludeProduct()
         {
             await GenericRepositoryTests.TestIncludeAsync(_contextMock, _productRepository, _expectedProduct);
         }

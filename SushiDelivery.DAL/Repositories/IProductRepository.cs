@@ -2,7 +2,7 @@
 
 namespace SushiDelivery.DAL.Repositories
 {
-    public interface IProductRepository : IRepository<Models.Product, Id<IProductId>>
+    interface IProductRepository : IRepository<Models.Product, Id<IProductId>>
     {
         Task<IEnumerable<Models.Product>> SearchByNameAsync(string name);
     }

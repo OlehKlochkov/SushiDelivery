@@ -18,7 +18,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies SaveChanges() method.")]
-        public async void TestSaveChanges()
+        public async Task TestSaveChanges()
         {
             //Act
             await _unitOfWork.SaveChanges();

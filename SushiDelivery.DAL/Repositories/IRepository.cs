@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="TEntity">Type of entity.</typeparam>
     /// <typeparam name="TEntityId">Type of entity Id.</typeparam>
-    public interface IRepository<TEntity, TEntityId>
+    interface IRepository<TEntity, TEntityId>
         where TEntity : class
         where TEntityId : struct
     {

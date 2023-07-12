@@ -2,7 +2,7 @@
 
 namespace SushiDelivery.DAL.Repositories
 {
-    public interface ICustomerRepository : IRepository<Models.Customer, Id<ICustomerId>>
+    interface ICustomerRepository : IRepository<Models.Customer, Id<ICustomerId>>
     {
     }
 }
