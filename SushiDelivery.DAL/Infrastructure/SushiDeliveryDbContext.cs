@@ -42,20 +42,11 @@ namespace SushiDelivery.DAL.Infrastructure
             modelBuilder.ApplyConfiguration(new ProductIngredientConfiguration());
         }
 
-        public DbSet<TEntity> GetDbSet<TEntity>() where TEntity : class
-        {
-            return Set<TEntity>();
-        }
+        public DbSet<TEntity> GetDbSet<TEntity>() where TEntity : class => Set<TEntity>();
 
-        public void SetModified<TEntity>(TEntity entity) where TEntity : class
-        {
-            Entry(entity).State = EntityState.Modified;
-        }
+        public void SetModified<TEntity>(TEntity entity) where TEntity : class => Entry(entity).State = EntityState.Modified;
 
-        public void SetDetached<TEntity>(TEntity entity) where TEntity : class
-        {
-            Entry(entity).State = EntityState.Detached;
-        }
+        public void SetDetached<TEntity>(TEntity entity) where TEntity : class => Entry(entity).State = EntityState.Detached;
 
         public override int SaveChanges()
         {
@@ -94,7 +85,7 @@ namespace SushiDelivery.DAL.Infrastructure
                 .Select(o => (IEntityBase)o.Entity)
                 .ToArray();
 
-            foreach (IEntityBase entity in entries)
+            foreach (var entity in entries)
             {
                 entity.UpdatedDate = DateTimeOffset.UtcNow;
             }

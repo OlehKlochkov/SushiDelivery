@@ -7,8 +7,8 @@
     {
         public Id<IOrderId> Id { get; set; }
 
-        public IList<IProductId> Products { get; set; }
+        public IList<IProductId> Products { get; set; } = new List<IProductId>();
 
-        public ICustomerId CustomerId { get; set; }
+        public ICustomerId CustomerId { get; set; } = null!;
     }
 }

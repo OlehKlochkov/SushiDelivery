@@ -10,7 +10,7 @@ namespace SushiDelivery.Domain.Models
     {
         public Id<IProductId> Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public decimal Price { get; set; }
 
@@ -19,6 +19,6 @@ namespace SushiDelivery.Domain.Models
         public Categories Category { get; set; }
 
         [NotMapped]
-        public ICollection<IIngredientId> Ingredients { get; set; }
+        public ICollection<IIngredientId> Ingredients { get; set; } = new List<IIngredientId>();
     }
 }

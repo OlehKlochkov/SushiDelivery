@@ -1,4 +1,6 @@
-﻿using SushiDelivery.DAL.Infrastructure;
+﻿using Microsoft.IdentityModel.Tokens;
+
+using SushiDelivery.DAL.Infrastructure;
 
 namespace SushiDelivery.DAL.Repositories
 {
@@ -16,22 +18,19 @@ namespace SushiDelivery.DAL.Repositories
         /// Constructor.
         /// </summary>
         /// <param name="contextFactory">Database context.</param>
-        protected GenericRepository(ISushiDeliveryContext context)
-        {
-            Context = context ?? throw new ArgumentNullException(nameof(context));
-        }
+        protected GenericRepository(ISushiDeliveryContext context) => Context = context ?? throw new ArgumentNullException(nameof(context));
 
-        public virtual async Task<TEntity> GetByIdAsync(TEntityId id)
+        public virtual async Task<TEntity?> GetByIdAsync(TEntityId id)
         {
             var entity = await Context.GetDbSet<TEntity>().FindAsync(id);
-            Context.SetDetached(entity);
+            if (entity is not null)
+            {
+                Context.SetDetached(entity);
+            }
             return entity;
         }
 
-        public virtual async Task SaveAsync(TEntity entity)
-        {
-            await Context.GetDbSet<TEntity>().AddAsync(entity);
-        }
+        public virtual async Task SaveAsync(TEntity entity) => await Context.GetDbSet<TEntity>().AddAsync(entity);
 
         public virtual async Task UpdateAsync(TEntity entityToUpdate)
         {

@@ -23,20 +23,14 @@ namespace SushiDelivery.DAL.Infrastructure
         /// Creates a new database context.
         /// </summary>
         /// <returns>Database context.</returns>
-        public ISushiDeliveryContext CreateDbContext()
-        {
-            return CreateInternal();
-        }
+        public ISushiDeliveryContext CreateDbContext() => CreateInternal();
 
         /// <summary>
         /// Creates a new database context.
         /// This method is by Entity Framework tools when creating and applying migrations to the database.
         /// </summary>
         /// <returns>Database context.</returns>
-        public SushiDeliveryDbContext CreateDbContext(string[] args)
-        {
-            return CreateInternal();
-        }
+        public SushiDeliveryDbContext CreateDbContext(string[] args) => CreateInternal();
 
         /// <summary>
         /// Create a new database context.
@@ -56,10 +50,7 @@ namespace SushiDelivery.DAL.Infrastructure
         /// Gets connection string.
         /// </summary>
         /// <returns>Connection string</returns>
-        private static string? GetConnectionString()
-        {
-            return _configuration.GetConnectionString(ConnectionStringName);
-        }
+        private static string? GetConnectionString() => _configuration.GetConnectionString(ConnectionStringName);
 
         #endregion
     }

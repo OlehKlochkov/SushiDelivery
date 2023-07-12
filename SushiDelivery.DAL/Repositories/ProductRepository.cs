@@ -11,7 +11,7 @@ namespace SushiDelivery.DAL.Repositories
         {
         }
 
-        public override async Task<Models.Product> GetByIdAsync(Id<IProductId> id)
+        public override async Task<Models.Product?> GetByIdAsync(Id<IProductId> id)
         {
             return await Context.GetDbSet<Models.Product>()
                 .AsNoTracking()

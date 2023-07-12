@@ -18,7 +18,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
             // Act
             mockSet.Setup(m => m.AddAsync(It.IsAny<TEntity>(), It.IsAny<CancellationToken>()))
-            .Callback((TEntity e, CancellationToken c) => { entities.Add(e); });
+            .Callback((TEntity e, CancellationToken c) => entities.Add(e));
 
             contextMock.Setup(m => m.GetDbSet<TEntity>()).Returns(mockSet.Object);
 
@@ -44,7 +44,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
             // Act
             mockSet.Setup(m => m.Attach(It.IsAny<TEntity>()))
-             .Callback((TEntity e) => { entities.Add(e); });
+             .Callback((TEntity e) => entities.Add(e));
 
             contextMock.Setup(m => m.GetDbSet<TEntity>()).Returns(mockSet.Object);
 

@@ -152,22 +152,12 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
             Assert.NotNull(customer);
         }
 
-        private void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (_context != null)
-                {
-                    _context.Dispose();
-                }
+                _context?.Dispose();
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-
-            GC.SuppressFinalize(this);
         }
     }
 }

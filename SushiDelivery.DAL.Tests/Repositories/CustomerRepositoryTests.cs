@@ -34,16 +34,10 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         [Fact]
         [Description("Test verifies save data into the database.")]
-        public async Task TestSaveCustomer()
-        {
-            await GenericRepositoryTests.TestSaveAsync(_contextMock, _customerRepository, _expectedCustomer);
-        }
+        public async Task TestSaveCustomer() => await GenericRepositoryTests.TestSaveAsync(_contextMock, _customerRepository, _expectedCustomer);
 
         [Fact]
         [Description("Test verifies include data into the database.")]
-        public async Task TestIncludeCustomer()
-        {
-            await GenericRepositoryTests.TestIncludeAsync(_contextMock, _customerRepository, _expectedCustomer);
-        }
+        public async Task TestIncludeCustomer() => await GenericRepositoryTests.TestIncludeAsync(_contextMock, _customerRepository, _expectedCustomer);
     }
 }

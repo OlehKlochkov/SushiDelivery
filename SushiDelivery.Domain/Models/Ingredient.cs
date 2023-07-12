@@ -9,11 +9,11 @@ namespace SushiDelivery.Domain.Models
     {
         public Id<IIngredientId> Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public string? Description { get; set; }
 
         [NotMapped]
-        public ICollection<IProductId> Products { get; set; }
+        public ICollection<IProductId> Products { get; set; } = new List<IProductId>();
     }
 }

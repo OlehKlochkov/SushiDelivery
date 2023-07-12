@@ -24,13 +24,10 @@ namespace SushiDelivery.DAL.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "0"),
                     TimeStamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Ingredient_Id", x => x.Id)
-                        .Annotation("SqlServer:Clustered", true);
-                });
+                constraints: table => table.PrimaryKey("PK__Ingredient_Id", x => x.Id)
+                        .Annotation("SqlServer:Clustered", true));
 
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -45,11 +42,8 @@ namespace SushiDelivery.DAL.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "0"),
                     TimeStamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Product_Id", x => x.Id)
-                        .Annotation("SqlServer:Clustered", true);
-                });
+                constraints: table => table.PrimaryKey("PK__Product_Id", x => x.Id)
+                        .Annotation("SqlServer:Clustered", true));
 
             migrationBuilder.CreateTable(
                 name: "ProductIngredients",
