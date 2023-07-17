@@ -1,17 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
 using SushiDelivery.DAL.Infrastructure;
+using SushiDelivery.DAL.Interfaces;
 using SushiDelivery.Domain.Models;
 
 
 namespace SushiDelivery.DAL.Repositories
 {
-    internal class ProductRepository : GenericRepository<Models.Product, Id<IProductId>>, IProductRepository
+    internal class ProductRepository : GenericRepository<IProduct, IProductId>, IProductRepository
     {
-        public ProductRepository(ISushiDeliveryContext context) : base(context)
+        public ProductRepository(Lazy<ISushiDeliveryContext> lazyContext, ILogger logger, bool autoSaveChanges = true)
+            : base(lazyContext, logger, autoSaveChanges)
         {
         }
 
-        public override async Task<Models.Product?> GetByIdAsync(Id<IProductId> id)
+        public IQueryable<IProduct> Items => Context.Products;
+
+        public override async Task<IProduct?> GetByIdAsync(Id<IProductId> id)
         {
             return await Context.GetDbSet<Models.Product>()
                 .AsNoTracking()
@@ -19,12 +25,21 @@ namespace SushiDelivery.DAL.Repositories
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Models.Product>> SearchByNameAsync(string name)
+        public async Task<IEnumerable<IProduct>> SearchByNameAsync(string name)
         {
             return await Context.Products
                  .AsNoTracking()
                  .Where(p => p.Name == name)
                  .ToListAsync();
+        }
+
+        protected override IProduct Create(IProduct entityIn) => new Models.Product(entityIn);
+
+        protected override void Map(IProduct entityOut, IProduct entityIn)
+        {
+            entityOut.Name = entityIn.Name;
+            entityOut.Price = entityIn.Price;
+            entityOut.Category = entityIn.Category;
         }
     }
 }

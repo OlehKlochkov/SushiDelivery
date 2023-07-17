@@ -15,27 +15,28 @@ namespace SushiDelivery.DAL.Configurations
 
         public void Configure(EntityTypeBuilder<ProductIngredient> entity)
         {
-            entity.HasKey(e => e.Id).IsClustered(true).HasName("PK__ProductIngredient_Id");
+            _ = entity.HasKey(e => e.Id).IsClustered(true).HasName("PK__ProductIngredient_Id");
 
-            entity.HasAlternateKey(e => new { e.ProductId, e.IngredientId }).IsClustered(false);
+            _ = entity.HasAlternateKey(e => new { e.ProductId, e.IngredientId }).IsClustered(false);
 
-            entity.Property(e => e.Id)
+            _ = entity.Property(e => e.Id)
                 .IsRequired(true)
                 .ValueGeneratedOnAdd()
                 .HasColumnOrder(IdIndex);
 
-            entity.HasOne(e => e.Product)
+            _ = entity.HasOne(e => e.Product)
                 .WithMany(p => p.ProductIngredients)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(e => e.ProductId);
 
-            entity.HasOne(e => e.Ingredient)
+            _ = entity.HasOne(e => e.Ingredient)
                 .WithMany(i => i.ProductIngredients)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(e => e.IngredientId);
 
-            entity.Property(e => e.ProductId).HasColumnOrder(ProductIdIndex);
-            entity.Property(e => e.IngredientId).HasColumnOrder(IngredientIdIndex);
+            _ = entity.Property(e => e.ProductId).HasColumnOrder(ProductIdIndex);
+
+            _ = entity.Property(e => e.IngredientId).HasColumnOrder(IngredientIdIndex);
         }
     }
 }

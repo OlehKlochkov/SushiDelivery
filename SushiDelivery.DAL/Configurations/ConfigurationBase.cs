@@ -20,27 +20,27 @@ namespace SushiDelivery.DAL.Configurations
 
         protected void ConfigureBase(EntityTypeBuilder entity)
         {
-            entity.Property<DateTimeOffset>(nameof(IEntityBase.CreatedDate))
+            _ = entity.Property<DateTimeOffset>(nameof(IEntityBase.CreatedDate))
                 .IsRequired()
                 .HasDefaultValueSql("getutcdate()")
                 .ValueGeneratedOnAdd()
                 .HasColumnOrder(CreatedDateIndex);
 
-            entity.Property<DateTimeOffset>(nameof(IEntityBase.UpdatedDate))
+            _ = entity.Property<DateTimeOffset>(nameof(IEntityBase.UpdatedDate))
                 .IsRequired()
                 .HasDefaultValueSql("getutcdate()")
                 .HasColumnOrder(UpdatedDateIndex);
 
-            entity.Property<DateTimeOffset?>(nameof(IEntityBase.DeletedDate))
+            _ = entity.Property<DateTimeOffset?>(nameof(IEntityBase.DeletedDate))
                 .IsRequired(false)
                 .HasColumnOrder(DeletedDateDateIndex);
 
-            entity.Property<bool>(nameof(IEntityBase.IsDeleted))
+            _ = entity.Property<bool>(nameof(IEntityBase.IsDeleted))
                 .IsRequired()
                 .HasDefaultValueSql("0")
                 .HasColumnOrder(IsDeletedIndex);
 
-            entity.Property<byte[]>(nameof(IEntityBase.TimeStamp))
+            _ = entity.Property<byte[]>(nameof(IEntityBase.TimeStamp))
                 .IsRowVersion()
                 .IsConcurrencyToken()
                 .HasColumnOrder(TimeStampIndex);

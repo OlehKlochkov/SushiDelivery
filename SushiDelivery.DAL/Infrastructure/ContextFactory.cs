@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace SushiDelivery.DAL.Infrastructure
 {
-    public class ContextFactory : IContextFactory, IDesignTimeDbContextFactory<SushiDeliveryDbContext>
+    internal class ContextFactory : IContextFactory, IDesignTimeDbContextFactory<SushiDeliveryDbContext>
     {
 
         #region Constants
@@ -41,7 +41,7 @@ namespace SushiDelivery.DAL.Infrastructure
             var connectionString = GetConnectionString();
 
             var optionsBuilder = new DbContextOptionsBuilder<SushiDeliveryDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            _ = optionsBuilder.UseSqlServer(connectionString);
 
             return new SushiDeliveryDbContext(optionsBuilder.Options);
         }

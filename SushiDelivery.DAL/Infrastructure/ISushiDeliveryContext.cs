@@ -5,7 +5,7 @@ namespace SushiDelivery.DAL.Infrastructure
     /// <summary>
     /// Interface for the database context.
     /// </summary>
-    public interface ISushiDeliveryContext : IDisposable
+    internal interface ISushiDeliveryContext : IDisposable
     {
         #region Properties
 

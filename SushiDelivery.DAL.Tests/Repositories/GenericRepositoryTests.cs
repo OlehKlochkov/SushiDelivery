@@ -2,6 +2,7 @@
 using Moq;
 using SushiDelivery.DAL.Infrastructure;
 using SushiDelivery.DAL.Repositories;
+using SushiDelivery.Domain.Models;
 
 namespace SushiDelivery.DAL.Tests.Repositories
 {
@@ -9,8 +10,8 @@ namespace SushiDelivery.DAL.Tests.Repositories
     {
         public static async Task TestSaveAsync<TEntity, TEntityId>(Mock<ISushiDeliveryContext> contextMock,
             GenericRepository<TEntity, TEntityId> repository, TEntity entity)
-            where TEntity : class
-            where TEntityId : struct
+            where TEntity : class, TEntityId
+            where TEntityId : class
         {
             // Arrange
             var entities = new List<TEntity>();
@@ -35,8 +36,8 @@ namespace SushiDelivery.DAL.Tests.Repositories
 
         public static async Task TestIncludeAsync<TEntity, TEntityId>(Mock<ISushiDeliveryContext> contextMock,
             GenericRepository<TEntity, TEntityId> repository, TEntity entity)
-            where TEntity : class
-            where TEntityId : struct
+            where TEntity : class, TEntityId
+            where TEntityId : class
         {
             // Arrange
             var entities = new List<TEntity>();
@@ -59,9 +60,9 @@ namespace SushiDelivery.DAL.Tests.Repositories
         }
 
         public static async Task TestGetByIdAsync<TEntity, TEntityId>(Mock<ISushiDeliveryContext> contextMock,
-            GenericRepository<TEntity, TEntityId> repository, TEntity entity, TEntityId id)
-            where TEntity : class
-            where TEntityId : struct
+            GenericRepository<TEntity, TEntityId> repository, TEntity entity, Id<TEntityId> id)
+            where TEntity : class, TEntityId
+            where TEntityId : class
         {
             // Arrange
             var mockSet = new Mock<DbSet<TEntity>>();

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiDelivery.DAL.Models
 {
-    public interface IEntityBase
+    internal interface IEntityBase
     {
         [Required]
         [DataType(DataType.DateTime)]
@@ -61,5 +61,7 @@ namespace SushiDelivery.DAL.Models
             get;
             set;
         }
+
+        public Guid GetId();
     }
 }

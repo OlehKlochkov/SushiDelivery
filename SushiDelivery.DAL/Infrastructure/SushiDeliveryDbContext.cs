@@ -8,7 +8,7 @@ namespace SushiDelivery.DAL.Infrastructure
     /// <summary>
     /// The database context.
     /// </summary>
-    public class SushiDeliveryDbContext : DbContext, ISushiDeliveryContext
+    internal class SushiDeliveryDbContext : DbContext, ISushiDeliveryContext
     {
         #region .ctor
 
@@ -36,10 +36,10 @@ namespace SushiDelivery.DAL.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new IngredientConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductIngredientConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new IngredientConfiguration());
+            _ = modelBuilder.ApplyConfiguration(new ProductIngredientConfiguration());
         }
 
         public DbSet<TEntity> GetDbSet<TEntity>() where TEntity : class => Set<TEntity>();
@@ -50,9 +50,9 @@ namespace SushiDelivery.DAL.Infrastructure
 
         public override int SaveChanges()
         {
-            ProcessUpdatedEntities();
+            _ = ProcessUpdatedEntities();
 
-            ProcessDeletedEntities();
+            _ = ProcessDeletedEntities();
 
             ChangeTracker.DetectChanges();
 

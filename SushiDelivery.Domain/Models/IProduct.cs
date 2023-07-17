@@ -39,6 +39,6 @@ namespace SushiDelivery.Domain.Models
         [NotMapped]
         [Description("ProductIngredients")]
         [Display(Name = "ProductIngredients")]
-        ICollection<IIngredientId> Ingredients { get; }
+        ICollection<IIngredientId>? Ingredients { get; }
     }
 }

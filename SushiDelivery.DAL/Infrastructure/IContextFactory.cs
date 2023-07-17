@@ -5,8 +5,8 @@ namespace SushiDelivery.DAL.Infrastructure
     /// <summary>
     /// Factory to create a new <see cref="ISushiDeliveryContext"/>.
     /// </summary>
-    public interface IContextFactory
+    internal  interface IContextFactory
     {
-       ISushiDeliveryContext CreateDbContext();
+       public ISushiDeliveryContext CreateDbContext();
     }
 }
