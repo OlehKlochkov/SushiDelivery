@@ -1,46 +1,65 @@
-﻿using Moq;
+﻿using System.ComponentModel;
+
+using Microsoft.Extensions.Logging;
+
+using Moq;
+
 using SushiDelivery.DAL.Infrastructure;
 using SushiDelivery.DAL.Repositories;
-using System.ComponentModel;
+using SushiDelivery.DAL.Tests.Infrastructure;
+
+using Xunit.Abstractions;
 
 namespace SushiDelivery.DAL.Tests.Repositories
 {
-    public class UnitOfWorkTests
+    public class UnitOfWorkTests : TestBase
     {
-        private Mock<ISushiDeliveryContext> _contextMock;
-        private UnitOfWork _unitOfWork;
-
-        public UnitOfWorkTests()
+        public UnitOfWorkTests(ITestOutputHelper output)
+            : base(output)
         {
-            _contextMock = new Mock<ISushiDeliveryContext>();
-            _unitOfWork = new UnitOfWork(_contextMock.Object);
         }
 
         [Fact]
         [Description("Test verifies SaveChanges() method.")]
-        public async Task TestSaveChanges()
+        public async Task SaveChangesAsync_NoChanges()
         {
+            // Arrange
+            var contextMock = new Mock<ISushiDeliveryContext>();
+            var loggerMock = new Mock<ILogger>();
+            var unitOfWork = new UnitOfWork(new Lazy<ISushiDeliveryContext>(contextMock.Object), loggerMock.Object);
+
             //Act
-            await _unitOfWork.SaveChanges();
+            var result = await unitOfWork.SaveChangesAsync();
 
             //Assert
-            _contextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
+            Assert.Null(result.Entity);
+            Assert.False(result.WasOverriden);
+            Assert.Equal(0, result.Count);
+            contextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
+            
         }
 
         [Fact]
         [Description("Test verifies that one instance of the repositories are created.")]
         public void TestGetRepositories()
         {
+            // Arrange
+            var contextMock = new Mock<ISushiDeliveryContext>();
+            var loggerMock = new Mock<ILogger>();
+            var unitOfWork = new UnitOfWork(new Lazy<ISushiDeliveryContext>(contextMock.Object), loggerMock.Object);
+
             //Act
-            var customerRepository = _unitOfWork.CustomerRepository;
-            var productRepository = _unitOfWork.ProductRepository;
+            var customerRepository = unitOfWork.CustomerRepository;
+            var productRepository = unitOfWork.ProductRepository;
 
             //Assert
             Assert.NotNull(customerRepository);
-            Assert.Equal(customerRepository, _unitOfWork.CustomerRepository);
+            Assert.False(customerRepository.AutoSaveChanges);
+            Assert.Equal(customerRepository, unitOfWork.CustomerRepository);
 
             Assert.NotNull(productRepository);
-            Assert.Equal(productRepository, _unitOfWork.ProductRepository);
+            Assert.False(productRepository.AutoSaveChanges);
+            Assert.Equal(productRepository, unitOfWork.ProductRepository);
         }
     }
 }

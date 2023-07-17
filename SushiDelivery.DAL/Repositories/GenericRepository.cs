@@ -81,7 +81,9 @@ namespace SushiDelivery.DAL.Repositories
                 }
                 var id = ((IEntityBase)entity).GetId();
 
-                var dbEntity = await Context.GetDbSet<TEntity>().FindAsync(id);
+                var dbEntity = id == Guid.Empty
+                    ? null
+                    : await Context.GetDbSet<TEntity>().FindAsync(id);
 
                 var wasOverriden = false;
                 if (dbEntity is not null)

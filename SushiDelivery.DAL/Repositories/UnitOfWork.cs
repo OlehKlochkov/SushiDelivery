@@ -27,7 +27,7 @@ namespace SushiDelivery.DAL.Repositories
 
         #region Contructor
 
-        public UnitOfWork(Lazy<ISushiDeliveryContext> lazyContext, ILogger<UnitOfWork> logger)
+        public UnitOfWork(Lazy<ISushiDeliveryContext> lazyContext, ILogger logger)
         {
             _lazyContext = lazyContext ?? throw new ArgumentNullException(nameof(lazyContext));
             Log = logger ?? throw new ArgumentNullException(nameof(logger));
