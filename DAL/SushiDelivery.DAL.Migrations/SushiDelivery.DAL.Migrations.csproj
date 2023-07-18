@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SushiDelivery.Domain\SushiDelivery.Domain.csproj" />
     <ProjectReference Include="..\SushiDelivery.DAL\SushiDelivery.DAL.csproj" />
-    <ProjectReference Include="..\SushiDelivery.Domain\SushiDelivery.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,5 +37,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+	
+    <ItemGroup>
+	    <InternalsVisibleTo Include="SushiDelivery.DAL.Migrations.IntegrationTests" />
+	    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+    </ItemGroup>
 
 </Project>

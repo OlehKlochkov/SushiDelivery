@@ -1,15 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using SushiDelivery.DAL.Infrastructure;
 using System.ComponentModel;
 
-namespace SushiDelivery.DAL.Tests.Infrastructure
+namespace SushiDelivery.DAL.Migrations.IntegrationTests
 {
-    public class ContextFactoryTests
+    public class DbMigrationsTests
     {
 
         private readonly ContextFactory _contextFactory;
 
-        public ContextFactoryTests() => _contextFactory = new ContextFactory();
+        public DbMigrationsTests() => _contextFactory = new ContextFactory();
 
         [Fact]
         [Description("Test verifies that factory creates instance of ISushiDeliveryContext.")]
@@ -24,18 +23,21 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
 
         [Fact]
         [Description("Test verifies that factory creates instance of ISushiDeliveryContext.")]
-        public void CreateDbContext_ApplyMigrations()
+        public async Task CreateDbContext_ApplyMigrations()
         {
-            //Act
+            // Act
             using (var context = _contextFactory.CreateDbContext(new string[] { }))
             {
-                //Assert
+                // Assert
                 Assert.NotNull(context);
 
-                context.Database.Migrate();
+                await context.Database.MigrateAsync();
 
-                //Assert
+                // Assert
                 Assert.Empty(context.Database.GetPendingMigrations());
+
+                // Cleanup
+                await context.Database.EnsureDeletedAsync();
             }
         }
     }
