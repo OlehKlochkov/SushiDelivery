@@ -44,7 +44,7 @@
     </ItemGroup>
 	
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="dotnet ef migrations script --idempotent --no-build --output DbMigrations.SQL" />
+      <Exec Command="dotnet ef migrations script --no-build --idempotent --output DbMigrations.SQL --verbose&#xD;&#xA;" />
     </Target>
 
 </Project>
