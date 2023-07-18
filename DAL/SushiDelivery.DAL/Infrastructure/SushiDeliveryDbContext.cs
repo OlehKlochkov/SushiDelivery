@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using SushiDelivery.DAL.Configurations;
 using SushiDelivery.DAL.Models;
@@ -17,7 +19,7 @@ namespace SushiDelivery.DAL.Infrastructure
         {
         }
 
-        public SushiDeliveryDbContext(DbContextOptions options)
+        protected SushiDeliveryDbContext(DbContextOptions options)
             : base(options)
         {
         }
@@ -47,7 +49,17 @@ namespace SushiDelivery.DAL.Infrastructure
             _ = modelBuilder.ApplyConfiguration(new ProductIngredientConfiguration());
         }
 
-        public DbSet<TEntity> GetDbSet<TEntity>() where TEntity : class => Set<TEntity>();
+        public DbSet<TEntity> GetDbSet<TEntity>() 
+            where TEntity : class
+        {
+            DbSet<TEntity>? result = null;
+            result ??= Customers as DbSet<TEntity>;
+            result ??= Products as DbSet<TEntity>;
+            result ??= Ingredients as DbSet<TEntity>;
+            result ??= ProductIngredients as DbSet<TEntity>;
+
+            return result ?? Set<TEntity>();
+        }
 
         public void SetModified<TEntity>(TEntity entity) where TEntity : class => Entry(entity).State = EntityState.Modified;
 

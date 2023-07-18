@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiDelivery.DAL.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiDelivery.DAL.Migrations.IntegrationTests", "DAL\SushiDelivery.DAL.Migrations.IntegrationTests\SushiDelivery.DAL.Migrations.IntegrationTests.csproj", "{0138D31E-C2EB-47AC-A4AC-EA0F2199BF76}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiDelivery.DAL.IntegrationTests", "DAL\SushiDelivery.DAL.IntegrationTests\SushiDelivery.DAL.IntegrationTests.csproj", "{9B521821-E202-447F-B1AC-050BA065B9F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{0138D31E-C2EB-47AC-A4AC-EA0F2199BF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0138D31E-C2EB-47AC-A4AC-EA0F2199BF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0138D31E-C2EB-47AC-A4AC-EA0F2199BF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B521821-E202-447F-B1AC-050BA065B9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B521821-E202-447F-B1AC-050BA065B9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B521821-E202-447F-B1AC-050BA065B9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B521821-E202-447F-B1AC-050BA065B9F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{BFC2C16A-A7CF-4AC8-B0E2-F205BA6FECAF} = {BDDA62E8-1D16-4C65-AD4B-CB89AE4D07A7}
 		{91EED549-5D19-4476-830D-CFACE22F1E7E} = {BFC2C16A-A7CF-4AC8-B0E2-F205BA6FECAF}
 		{0138D31E-C2EB-47AC-A4AC-EA0F2199BF76} = {BFC2C16A-A7CF-4AC8-B0E2-F205BA6FECAF}
+		{9B521821-E202-447F-B1AC-050BA065B9F4} = {BFC2C16A-A7CF-4AC8-B0E2-F205BA6FECAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B44F59D-6517-4629-AD0C-3E152A9E4A37}

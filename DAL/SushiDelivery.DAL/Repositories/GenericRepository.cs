@@ -11,9 +11,10 @@ namespace SushiDelivery.DAL.Repositories
     /// Base repository for database operations.
     /// </summary>
     /// <typeparam name="TEntity">Type of entity.</typeparam>
-    internal abstract class GenericRepository<TEntity, TEntityId> : IRepository<TEntity, TEntityId>
+    internal abstract class GenericRepository<TEntityModel, TEntity, TEntityId> : IRepository<TEntity, TEntityId>
         where TEntityId : class
         where TEntity : class, TEntityId
+        where TEntityModel : class, TEntity
     {
         /// <summary>
         /// Flag that indicates whether object was disposed. 
@@ -38,8 +39,8 @@ namespace SushiDelivery.DAL.Repositories
             AutoSaveChanges = autoSaveChanges;
         }
 
-        protected abstract TEntity Create(TEntity entityIn);
-        protected abstract void Map(TEntity entityOut, TEntity entityIn);
+        protected abstract TEntityModel Create(TEntity entityIn);
+        protected abstract void Map(TEntityModel entityOut, TEntity entityIn);
 
         public virtual async Task<TEntity?> GetByIdAsync(Id<TEntityId> id)
         {
@@ -48,7 +49,7 @@ namespace SushiDelivery.DAL.Repositories
 #if DEBUG
                 Log.LogDebug("id = {id}", id);
 #endif
-                var entity = await Context.GetDbSet<TEntity>().FindAsync(id);
+                var entity = await Context.GetDbSet<TEntityModel>().FindAsync(id);
                 if (entity is not null)
                 {
                     Context.SetDetached(entity);
@@ -83,7 +84,7 @@ namespace SushiDelivery.DAL.Repositories
 
                 var dbEntity = id == Guid.Empty
                     ? null
-                    : await Context.GetDbSet<TEntity>().FindAsync(id);
+                    : await Context.GetDbSet<TEntityModel>().FindAsync(id);
 
                 var wasOverriden = false;
                 if (dbEntity is not null)
@@ -94,7 +95,7 @@ namespace SushiDelivery.DAL.Repositories
                 else
                 {
                     dbEntity = Create(entity);
-                    _ = await Context.GetDbSet<TEntity>().AddAsync(dbEntity);
+                    _ = await Context.GetDbSet<TEntityModel>().AddAsync(dbEntity);
                 }
 
                 var count = 1;
@@ -124,7 +125,7 @@ namespace SushiDelivery.DAL.Repositories
                 }
                 var id = ((IEntityBase)entity).GetId();
 
-                var dbEntity = await Context.GetDbSet<TEntity>().FindAsync(id);
+                var dbEntity = await Context.GetDbSet<TEntityModel>().FindAsync(id);
 
                 if (dbEntity is null)
                 {
@@ -165,7 +166,7 @@ namespace SushiDelivery.DAL.Repositories
 #if DEBUG
                 Log.LogDebug($"{nameof(id)} = {id}");
 #endif
-                var dbEntity = await Context.GetDbSet<TEntity>().FindAsync(id);
+                var dbEntity = await Context.GetDbSet<TEntityModel>().FindAsync(id);
 
                 if (dbEntity is null)
                 {
@@ -179,7 +180,7 @@ namespace SushiDelivery.DAL.Repositories
 #if DEBUG
                     Log.LogDebug($"{nameof(dbEntity)} = {dbEntity}");
 #endif
-                    Context.GetDbSet<TEntity>().Remove(dbEntity);
+                    Context.GetDbSet<TEntityModel>().Remove(dbEntity);
                 }
                 OperationResult<TEntity> result;
                 if (AutoSaveChanges)

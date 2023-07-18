@@ -8,7 +8,7 @@ using SushiDelivery.Domain.Models;
 
 namespace SushiDelivery.DAL.Repositories
 {
-    internal class ProductRepository : GenericRepository<IProduct, IProductId>, IProductRepository
+    internal class ProductRepository : GenericRepository<Models.Product, IProduct, IProductId>, IProductRepository
     {
         public ProductRepository(Lazy<ISushiDeliveryContext> lazyContext, ILogger logger, bool autoSaveChanges = true)
             : base(lazyContext, logger, autoSaveChanges)
@@ -33,9 +33,9 @@ namespace SushiDelivery.DAL.Repositories
                  .ToListAsync();
         }
 
-        protected override IProduct Create(IProduct entityIn) => new Models.Product(entityIn);
+        protected override Models.Product Create(IProduct entityIn) => new Models.Product(entityIn);
 
-        protected override void Map(IProduct entityOut, IProduct entityIn)
+        protected override void Map(Models.Product entityOut, IProduct entityIn)
         {
             entityOut.Name = entityIn.Name;
             entityOut.Price = entityIn.Price;
