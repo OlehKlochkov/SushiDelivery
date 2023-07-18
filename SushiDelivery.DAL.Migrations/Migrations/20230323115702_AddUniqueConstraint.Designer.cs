@@ -11,9 +11,9 @@ using SushiDelivery.DAL.Infrastructure;
 
 namespace SushiDelivery.DAL.Migrations
 {
-    [DbContext(typeof(SushiDeliveryDbContext))]
-    [Migration("20230704085350_NewSequentialId")]
-    partial class NewSequentialId
+    [DbContext(typeof(MigrationsDbContext))]
+    [Migration("20230323115702_AddUniqueConstraint")]
+    partial class AddUniqueConstraint
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,10 +28,8 @@ namespace SushiDelivery.DAL.Migrations
             modelBuilder.Entity("SushiDelivery.DAL.Models.Customer", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(1)
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .HasColumnOrder(1);
 
                     b.Property<string>("Address")
                         .HasMaxLength(256)
@@ -94,10 +92,8 @@ namespace SushiDelivery.DAL.Migrations
             modelBuilder.Entity("SushiDelivery.DAL.Models.Ingredient", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(1)
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .HasColumnOrder(1);
 
                     b.Property<DateTimeOffset>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -149,10 +145,8 @@ namespace SushiDelivery.DAL.Migrations
             modelBuilder.Entity("SushiDelivery.DAL.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(1)
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .HasColumnOrder(1);
 
                     b.Property<int>("Category")
                         .HasColumnType("int")

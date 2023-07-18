@@ -11,9 +11,9 @@ using SushiDelivery.DAL.Infrastructure;
 
 namespace SushiDelivery.DAL.Migrations
 {
-    [DbContext(typeof(SushiDeliveryDbContext))]
-    [Migration("20230323115702_AddUniqueConstraint")]
-    partial class AddUniqueConstraint
+    [DbContext(typeof(MigrationsDbContext))]
+    [Migration("20230310085628_CreateProductsAndIngredients")]
+    partial class CreateProductsAndIngredients
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -180,7 +180,7 @@ namespace SushiDelivery.DAL.Migrations
                         .HasColumnOrder(2);
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(5, 2)")
                         .HasColumnOrder(3);
 
                     b.Property<byte[]>("TimeStamp")
@@ -225,11 +225,9 @@ namespace SushiDelivery.DAL.Migrations
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
 
-                    b.HasAlternateKey("ProductId", "IngredientId");
-
-                    SqlServerKeyBuilderExtensions.IsClustered(b.HasAlternateKey("ProductId", "IngredientId"), false);
-
                     b.HasIndex("IngredientId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductIngredients");
                 });

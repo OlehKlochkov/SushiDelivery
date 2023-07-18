@@ -17,6 +17,11 @@ namespace SushiDelivery.DAL.Infrastructure
         {
         }
 
+        public SushiDeliveryDbContext(DbContextOptions options)
+            : base(options)
+        {
+        }
+
         #endregion
 
         #region Properties

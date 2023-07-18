@@ -11,7 +11,7 @@ using SushiDelivery.DAL.Infrastructure;
 
 namespace SushiDelivery.DAL.Migrations
 {
-    [DbContext(typeof(SushiDeliveryDbContext))]
+    [DbContext(typeof(MigrationsDbContext))]
     [Migration("20230227134627_CreateCustomers")]
     partial class CreateCustomers
     {
