@@ -42,5 +42,9 @@
 	    <InternalsVisibleTo Include="SushiDelivery.DAL.Migrations.IntegrationTests" />
 	    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
     </ItemGroup>
+	
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="dotnet ef migrations script --idempotent --no-build --output DbMigrations.SQL" />
+    </Target>
 
 </Project>
