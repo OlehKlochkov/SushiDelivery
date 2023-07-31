@@ -11,6 +11,9 @@ namespace SushiDelivery.DAL.Interfaces
         where TEntityId : class
         where TEntity : class, TEntityId
     {
+        /// <summary>
+        /// Save each operation to database or use Unit Of Work.
+        /// </summary>
         public bool AutoSaveChanges { get; set; }
 
         /// <summary>

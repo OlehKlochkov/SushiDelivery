@@ -6,14 +6,16 @@ using SushiDelivery.DAL.Models;
 
 namespace SushiDelivery.DAL.Configurations
 {
+    /// <summary>
+    /// Enity Framework mapping between the DAL model and the database table.
+    /// </summary>
     internal class IngredientConfiguration : ConfigurationBase, IEntityTypeConfiguration<Models.Ingredient>
     {
-        #region Constants
-
-        private const byte NameIndex = 2;
-        private const byte DescriptionIndex = 3;
-
-        #endregion
+        private enum FieldIndex
+        {
+            Name = 2,
+            Description = 3,
+        }
 
         public void Configure(EntityTypeBuilder<Models.Ingredient> entity)
         {
@@ -26,8 +28,8 @@ namespace SushiDelivery.DAL.Configurations
                 .HasConversion(ValueConverterHelper<IIngredientId>.GetValueConverter())
                 .HasColumnOrder(IdIndex);
 
-            entity.Property(e => e.Name).IsRequired(true).HasColumnOrder(NameIndex);
-            entity.Property(e => e.Description).HasColumnOrder(DescriptionIndex);
+            entity.Property(e => e.Name).IsRequired(true).HasColumnOrder((int)FieldIndex.Name);
+            entity.Property(e => e.Description).HasColumnOrder((int)FieldIndex.Description);
 
             entity.HasQueryFilter(o => !((IEntityBase)o).IsDeleted);
 

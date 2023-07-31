@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiDelivery.DAL.Models
 {
+    /// <summary>
+    /// Base interface for all database-mapped models.
+    /// </summary>
     internal interface IEntityBase
     {
         [Required]
@@ -62,6 +65,10 @@ namespace SushiDelivery.DAL.Models
             set;
         }
 
+        /// <summary>
+        /// Gets primary key value.
+        /// </summary>
+        /// <returns>Guid.</returns>
         public Guid GetId();
     }
 }

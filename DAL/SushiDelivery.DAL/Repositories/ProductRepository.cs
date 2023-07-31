@@ -29,7 +29,7 @@ namespace SushiDelivery.DAL.Repositories
         {
             return await Context.Products
                  .AsNoTracking()
-                 .Where(p => p.Name == name)
+                 .Where(p => EF.Functions.Like(p.Name, name))
                  .ToListAsync();
         }
 

@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SushiDelivery.DAL.Models
 {
+    /// <summary>
+    /// Database - mapped model for the Product - Ingedient many-to-many mapping.
+    /// </summary>
     internal class ProductIngredient
     {
         [Key, Required]

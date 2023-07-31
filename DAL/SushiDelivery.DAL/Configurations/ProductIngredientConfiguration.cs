@@ -4,14 +4,16 @@ using SushiDelivery.DAL.Models;
 
 namespace SushiDelivery.DAL.Configurations
 {
+    /// <summary>
+    /// Enity Framework mapping between the DAL model and the database table.
+    /// </summary>
     internal class ProductIngredientConfiguration : ConfigurationBase, IEntityTypeConfiguration<ProductIngredient>
     {
-        #region Constants
-
-        private const byte ProductIdIndex = 2;
-        private const byte IngredientIdIndex = 3;
-
-        #endregion
+        private enum FieldIndex
+        {
+            ProductId = 2,
+            IngredientId = 3,
+        }
 
         public void Configure(EntityTypeBuilder<ProductIngredient> entity)
         {
@@ -34,9 +36,9 @@ namespace SushiDelivery.DAL.Configurations
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(e => e.IngredientId);
 
-            _ = entity.Property(e => e.ProductId).HasColumnOrder(ProductIdIndex);
+            _ = entity.Property(e => e.ProductId).HasColumnOrder((int)FieldIndex.ProductId);
 
-            _ = entity.Property(e => e.IngredientId).HasColumnOrder(IngredientIdIndex);
+            _ = entity.Property(e => e.IngredientId).HasColumnOrder((int)FieldIndex.IngredientId);
         }
     }
 }

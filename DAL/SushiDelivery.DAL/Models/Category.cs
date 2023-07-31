@@ -4,8 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SushiDelivery.DAL.Models
 {
+    /// <summary>
+    /// Model for saving <see>Categories</see> enum to dictionary table in db.
+    /// </summary>
     public partial class Category
     {
+        // TODO: Add custom migration to populate dictionary table from Categories enum.
         [Key]
         public Guid Id { get; set; }
         [Required]

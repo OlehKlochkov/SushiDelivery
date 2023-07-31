@@ -6,15 +6,17 @@ using SushiDelivery.DAL.Models;
 
 namespace SushiDelivery.DAL.Configurations
 {
+    /// <summary>
+    /// Enity Framework mapping between the DAL model and the database table.
+    /// </summary>
     internal class CustomerConfiguration : ConfigurationBase, IEntityTypeConfiguration<Models.Customer>
     {
-        #region Constants
-
-        private const byte LoginNameIndex = 2;
-        private const byte PhoneIndex = 3;
-        private const byte AddressIndex = 4;
-
-        #endregion
+        private enum FieldIndex
+        {
+            LoginName = 2,
+            Phone = 3,
+            Address = 4,
+        }
 
         public void Configure(EntityTypeBuilder<Models.Customer> entity)
         {
@@ -31,13 +33,13 @@ namespace SushiDelivery.DAL.Configurations
             entity.Property(e => e.LoginName)
                 .IsRequired(true)
                 .HasMaxLength(256)
-                .HasColumnOrder(LoginNameIndex);
+                .HasColumnOrder((int)FieldIndex.LoginName);
             entity.Property(e => e.Phone)
                 .HasMaxLength(100)
-                .HasColumnOrder(PhoneIndex);
+                .HasColumnOrder((int)FieldIndex.Phone);
             entity.Property(e => e.Address)
                 .HasMaxLength(256)
-                .HasColumnOrder(AddressIndex);
+                .HasColumnOrder((int)FieldIndex.Address);
 
             entity.HasQueryFilter(o => !((IEntityBase)o).IsDeleted);
 

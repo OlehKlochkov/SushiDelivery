@@ -2,6 +2,10 @@
 
 namespace SushiDelivery.DAL.Models
 {
+    /// <summary>
+    /// DTO for IOperationResult interface.
+    /// </summary>
+    /// <typeparam name="TEntity">Entity type</typeparam>
     internal readonly struct OperationResult<TEntity> : IOperationResult<TEntity>
         where TEntity : class
     {

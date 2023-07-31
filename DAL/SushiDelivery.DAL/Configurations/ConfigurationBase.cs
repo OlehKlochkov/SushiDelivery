@@ -5,18 +5,21 @@ using SushiDelivery.DAL.Models;
 
 namespace SushiDelivery.DAL.Configurations
 {
+    /// <summary>
+    /// Base mapping for common special fields present in all DB tables.
+    /// </summary>
     internal class ConfigurationBase
     {
-        #region Constants
-
         protected const byte IdIndex = 1;
-        private const byte CreatedDateIndex = 101;
-        private const byte UpdatedDateIndex = 102;
-        private const byte DeletedDateDateIndex = 103;
-        private const byte IsDeletedIndex = 104;
-        private const byte TimeStampIndex = 105;
 
-        #endregion
+        private enum FieldIndex
+        {
+            CreatedDate = 101,
+            UpdatedDate = 102,
+            DeletedDateDate = 103,
+            IsDeleted = 104,
+            TimeStamp = 105
+        }
 
         protected void ConfigureBase(EntityTypeBuilder entity)
         {
@@ -24,26 +27,26 @@ namespace SushiDelivery.DAL.Configurations
                 .IsRequired()
                 .HasDefaultValueSql("getutcdate()")
                 .ValueGeneratedOnAdd()
-                .HasColumnOrder(CreatedDateIndex);
+                .HasColumnOrder((int)FieldIndex.CreatedDate);
 
             _ = entity.Property<DateTimeOffset>(nameof(IEntityBase.UpdatedDate))
                 .IsRequired()
                 .HasDefaultValueSql("getutcdate()")
-                .HasColumnOrder(UpdatedDateIndex);
+                .HasColumnOrder((int)FieldIndex.UpdatedDate);
 
             _ = entity.Property<DateTimeOffset?>(nameof(IEntityBase.DeletedDate))
                 .IsRequired(false)
-                .HasColumnOrder(DeletedDateDateIndex);
+                .HasColumnOrder((int)FieldIndex.DeletedDateDate);
 
             _ = entity.Property<bool>(nameof(IEntityBase.IsDeleted))
                 .IsRequired()
                 .HasDefaultValueSql("0")
-                .HasColumnOrder(IsDeletedIndex);
+                .HasColumnOrder((int)FieldIndex.IsDeleted);
 
             _ = entity.Property<byte[]>(nameof(IEntityBase.TimeStamp))
                 .IsRowVersion()
                 .IsConcurrencyToken()
-                .HasColumnOrder(TimeStampIndex);
+                .HasColumnOrder((int)FieldIndex.TimeStamp);
         }
     }
 }
