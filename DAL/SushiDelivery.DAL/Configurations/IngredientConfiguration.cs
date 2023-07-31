@@ -19,6 +19,7 @@ namespace SushiDelivery.DAL.Configurations
 
         public void Configure(EntityTypeBuilder<Models.Ingredient> entity)
         {
+#pragma warning disable IDE0058 // Expression value is never used
             entity.HasKey(e => e.Id).IsClustered(true).HasName("PK__Ingredient_Id");
             entity.Property(e => e.Id)
                 .HasColumnType("uniqueidentifier")
@@ -32,6 +33,7 @@ namespace SushiDelivery.DAL.Configurations
             entity.Property(e => e.Description).HasColumnOrder((int)FieldIndex.Description);
 
             entity.HasQueryFilter(o => !((IEntityBase)o).IsDeleted);
+#pragma warning restore IDE0058 // Expression value is never used
 
             ConfigureBase(entity);
         }

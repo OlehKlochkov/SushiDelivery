@@ -26,7 +26,7 @@ namespace SushiDelivery.DAL.Migrations.IntegrationTests
         public async Task CreateDbContext_ApplyMigrations()
         {
             // Act
-            using (var context = _contextFactory.CreateDbContext(new string[] { }))
+            using (var context = _contextFactory.CreateDbContext(Array.Empty<string>()))
             {
                 // Assert
                 Assert.NotNull(context);
@@ -37,7 +37,7 @@ namespace SushiDelivery.DAL.Migrations.IntegrationTests
                 Assert.Empty(context.Database.GetPendingMigrations());
 
                 // Cleanup
-                await context.Database.EnsureDeletedAsync();
+                _ = await context.Database.EnsureDeletedAsync();
             }
         }
     }

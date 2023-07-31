@@ -43,7 +43,7 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
             var customer = new Models.Customer()
             {
                 LoginName = "Test",
-                TimeStamp = new byte[0]
+                TimeStamp = Array.Empty<byte>()
             };
 
             await _context.Customers.AddAsync(customer);
@@ -68,7 +68,7 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
             var customer1 = new Models.Customer()
             {
                 LoginName = "Test",
-                TimeStamp = new byte[0]
+                TimeStamp = Array.Empty<byte>()
             };
 
             ((IEntityBase)customer1).CreatedDate = utcNow1;
@@ -109,7 +109,7 @@ namespace SushiDelivery.DAL.Tests.Infrastructure
             var customer1 = new Models.Customer()
             {
                 LoginName = "Test",
-                TimeStamp = new byte[0]
+                TimeStamp = Array.Empty<byte>()
             };
 
             await _context.Customers.AddAsync(customer1);

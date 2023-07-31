@@ -6,6 +6,9 @@ using SushiDelivery.DAL.Infrastructure;
 
 namespace SushiDelivery.DAL.Migrations
 {
+    /// <summary>
+    /// Child DB context only for applying DB migrations.
+    /// </summary>
     internal class MigrationsDbContext : SushiDeliveryDbContext
     {
         public MigrationsDbContext(DbContextOptions<MigrationsDbContext> options)

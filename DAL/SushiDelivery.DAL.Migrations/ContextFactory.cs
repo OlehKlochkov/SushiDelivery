@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace SushiDelivery.DAL.Migrations
 {
+    /// <summary>
+    /// Context Factory is required by VS and EF toold to generate migrations.
+    /// </summary>
     internal class ContextFactory : IDesignTimeDbContextFactory<MigrationsDbContext>
     {
 

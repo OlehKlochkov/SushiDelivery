@@ -81,7 +81,7 @@ namespace SushiDelivery.DAL.Tests.Repositories
                     (ICustomer entity, CancellationToken token) =>
                     {
                         createdCustomer = entity as Models.Customer; 
-                        createdCustomer.Id = new Id<ICustomerId>(Guid.NewGuid());
+                        createdCustomer!.Id = new Id<ICustomerId>(Guid.NewGuid());
                     })
                 .Returns(null);
 

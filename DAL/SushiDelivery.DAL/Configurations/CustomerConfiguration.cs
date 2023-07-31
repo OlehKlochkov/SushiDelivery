@@ -20,6 +20,7 @@ namespace SushiDelivery.DAL.Configurations
 
         public void Configure(EntityTypeBuilder<Models.Customer> entity)
         {
+#pragma warning disable IDE0058 // Expression value is never used
             entity.HasKey(e => e.Id).IsClustered(true).HasName("PK_Customer_Id");
             entity.HasAlternateKey(e => e.LoginName).IsClustered(false);
             entity.Property(e => e.Id)
@@ -42,6 +43,7 @@ namespace SushiDelivery.DAL.Configurations
                 .HasColumnOrder((int)FieldIndex.Address);
 
             entity.HasQueryFilter(o => !((IEntityBase)o).IsDeleted);
+#pragma warning restore IDE0058 // Expression value is never used
 
             ConfigureBase(entity);
         }
