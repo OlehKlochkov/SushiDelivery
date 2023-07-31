@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="SushiDelivery.Domain.Models.Customer">
+    <Position X="0.5" Y="8" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Customer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SushiDelivery.Domain.Models.Product">
+    <Position X="9.75" Y="8" Width="3.5" />
+    <AssociationLine Name="Ingredients" Type="SushiDelivery.Domain.Models.IIngredientId" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.25" Y="8.84" />
+        <Point X="13.542" Y="8.84" />
+        <Point X="13.542" Y="4.639" />
+        <Point X="13.958" Y="4.639" Type="JumpStart" />
+        <Point X="14.135" Y="4.639" Type="JumpEnd" />
+        <Point X="14.5" Y="4.639" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.14" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAACQAAAAAAAAAAAAAAIAACAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Ingredients" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SushiDelivery.Domain.Models.Ingredient">
+    <Position X="14.5" Y="8" Width="3.25" />
+    <AssociationLine Name="Products" Type="SushiDelivery.Domain.Models.IProductId" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="8.75" />
+        <Point X="14.052" Y="8.75" />
+        <Point X="14.052" Y="4.197" />
+        <Point X="12" Y="4.197" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="-0.19" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Ingredient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Products" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SushiDelivery.Domain.Models.Order">
+    <Position X="4" Y="8" Width="2.75" />
+    <AssociationLine Name="CustomerId" Type="SushiDelivery.Domain.Models.ICustomerId" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="8.552" />
+        <Point X="3.625" Y="8.552" />
+        <Point X="3.625" Y="4.442" />
+        <Point X="3" Y="4.442" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Products" Type="SushiDelivery.Domain.Models.IProductId" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="8.552" />
+        <Point X="7.125" Y="8.552" />
+        <Point X="7.125" Y="4.442" />
+        <Point X="9.75" Y="4.442" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.079" Y="-0.263" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CustomerId" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Products" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="SushiDelivery.Domain.Models.Id&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAhAAAAAAAAAAAAIAAAAAAAIAAAiA=</HashCode>
+      <FileName>Models\Id.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="SushiDelivery.Domain.Models.ICustomer">
+    <Position X="0.5" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ICustomer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SushiDelivery.Domain.Models.ICustomerId">
+    <Position X="0.5" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ICustomerId.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Id" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="SushiDelivery.Domain.Models.IProductId">
+    <Position X="9.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IProductId.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Id" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="SushiDelivery.Domain.Models.IProduct">
+    <Position X="9.75" Y="5.5" Width="3.25" />
+    <AssociationLine Name="Ingredients" Type="SushiDelivery.Domain.Models.IIngredientId" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13" Y="6.606" />
+        <Point X="13.521" Y="6.606" />
+        <Point X="13.521" Y="4.639" />
+        <Point X="13.958" Y="4.639" Type="JumpStart" />
+        <Point X="14.135" Y="4.639" Type="JumpEnd" />
+        <Point X="14.5" Y="4.639" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.185" Y="-0.234" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAACQAAAAAAAAAAAAAAIAACAA=</HashCode>
+      <FileName>Models\IProduct.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Ingredients" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="SushiDelivery.Domain.Models.IIngredientId">
+    <Position X="14.5" Y="4" Width="2.5" />
+    <AssociationLine Name="Id" Type="SushiDelivery.Domain.Models.Id&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.75" Y="4" />
+        <Point X="15.75" Y="2.125" />
+        <Point X="3.5" Y="2.125" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IIngredientId.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Id" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="SushiDelivery.Domain.Models.IIngredient">
+    <Position X="14.5" Y="5.5" Width="3.25" />
+    <AssociationLine Name="Products" Type="SushiDelivery.Domain.Models.IProductId" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="6.094" />
+        <Point X="14.042" Y="6.094" />
+        <Point X="14.042" Y="4.197" />
+        <Point X="12" Y="4.197" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\IIngredient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Products" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="SushiDelivery.Domain.Models.IOrderId">
+    <Position X="4" Y="4" Width="2.25" />
+    <AssociationLine Name="Id" Type="SushiDelivery.Domain.Models.Id&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.125" Y="4" />
+        <Point X="5.125" Y="3" />
+        <Point X="3.5" Y="3" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IOrderId.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Id" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="SushiDelivery.Domain.Models.IOrder">
+    <Position X="4" Y="5.5" Width="2.75" />
+    <AssociationLine Name="CustomerId" Type="SushiDelivery.Domain.Models.ICustomerId" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="6.056" />
+        <Point X="3.625" Y="6.056" />
+        <Point X="3.625" Y="4.434" />
+        <Point X="3" Y="4.434" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Products" Type="SushiDelivery.Domain.Models.IProductId" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="5.999" />
+        <Point X="7.125" Y="5.999" />
+        <Point X="7.125" Y="4.442" />
+        <Point X="9.75" Y="4.442" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\IOrder.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CustomerId" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Products" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Enum Name="SushiDelivery.Domain.Enumerations.Categories">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABgAAAAAAAAAAAABAAAQAAEAAAAAiAAAAAA=</HashCode>
+      <FileName>Enumerations\Categories.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
