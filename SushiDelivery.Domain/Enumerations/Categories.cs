@@ -2,6 +2,9 @@
 
 namespace SushiDelivery.Domain.Enumerations
 {
+    /// <summary>
+    /// Product categories.
+    /// </summary>
     public enum Categories
     {
         [Description("Sushi")]

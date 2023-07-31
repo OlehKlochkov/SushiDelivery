@@ -15,5 +15,7 @@ namespace SushiDelivery.Domain.Models
 
         [NotMapped]
         public ICollection<IProductId> Products { get; set; } = new List<IProductId>();
+
+        public override string ToString() => $"{base.ToString()} {nameof(Id)}={Id} {nameof(Name)}={Name} {nameof(Description)}={Description}";
     }
 }

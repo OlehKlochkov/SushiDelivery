@@ -22,5 +22,7 @@
 
         public static bool operator !=(Id<T> x, Id<T> y) => !(x == y);
 
+        public override string ToString() => $"{base.ToString()} {_value}";
+
     }
 }

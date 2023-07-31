@@ -12,5 +12,7 @@
         public string? Phone { get; set; }
 
         public string? Address { get; set; }
+
+        public override string ToString() => $"{base.ToString()} {nameof(Id)}={Id} {nameof(LoginName)}={LoginName} {nameof(Phone)}={Phone} {nameof(Address)}={Address}";
     }
 }

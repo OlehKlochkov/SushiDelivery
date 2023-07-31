@@ -10,5 +10,7 @@
         public IList<IProductId> Products { get; set; } = new List<IProductId>();
 
         public ICustomerId CustomerId { get; set; } = null!;
+
+        public override string ToString() => $"{base.ToString()} {nameof(Id)}={Id} {nameof(CustomerId)}={CustomerId}";
     }
 }
