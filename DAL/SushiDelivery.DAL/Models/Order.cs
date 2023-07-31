@@ -6,7 +6,7 @@
     internal class Order : Domain.Models.Order, IEntityBase
     {
         // TODO: This implementation is the same for all database - mapped models. Find a way to avoid code duplication.
-#region IEntityBase implementation
+        #region IEntityBase implementation
 
         public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
         public DateTimeOffset UpdatedDate { get; set; } = DateTimeOffset.UtcNow;
@@ -16,6 +16,8 @@
 
         public Guid GetId() => (Guid)Id;
 
-#endregion
+        public override string ToString() => $"{base.ToString()} {nameof(IsDeleted)}={IsDeleted} {nameof(CreatedDate)}={CreatedDate} {nameof(UpdatedDate)}={UpdatedDate} {nameof(DeletedDate)}={DeletedDate} {nameof(TimeStamp)}={TimeStamp}";
+
+        #endregion
     }
 }

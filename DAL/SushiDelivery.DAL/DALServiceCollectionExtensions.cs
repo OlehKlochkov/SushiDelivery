@@ -8,6 +8,9 @@ using SushiDelivery.DAL.Repositories;
 
 namespace SushiDelivery.DAL
 {
+    /// <summary>
+    /// Extension menthids for DAL interfaces registration in DI container.
+    /// </summary>
     public static class DALServiceCollectionExtensions
     {
         public static void AddDALSql(this IServiceCollection services, IConfiguration configuration)

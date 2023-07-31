@@ -64,7 +64,7 @@ namespace SushiDelivery.DAL.Infrastructure
         /// </summary>
         /// <typeparam name="TEntity">Entity type.</typeparam>
         /// <returns>One of DbSet properties.</returns>
-        public DbSet<TEntity> GetDbSet<TEntity>() 
+        public DbSet<TEntity> GetDbSet<TEntity>()
             where TEntity : class
         {
             using (Log?.BeginScope(nameof(GetDbSet)))
@@ -94,7 +94,7 @@ namespace SushiDelivery.DAL.Infrastructure
         /// - Update UpdatedDate and DeletedDate
         /// </summary>
         /// <returns>Number of records affected.</returns>
-        public override int SaveChanges()
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             using (Log?.BeginScope(nameof(SaveChanges)))
             {
@@ -104,7 +104,7 @@ namespace SushiDelivery.DAL.Infrastructure
 
                 ChangeTracker.DetectChanges();
 
-                var result = base.SaveChanges();
+                var result = await base.SaveChangesAsync(cancellationToken);
 
                 Log?.LogDebug("result = {result}", result);
 
