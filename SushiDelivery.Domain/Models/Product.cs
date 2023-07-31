@@ -1,5 +1,6 @@
-﻿using SushiDelivery.Domain.Enumerations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+using SushiDelivery.Domain.Enumerations;
 
 namespace SushiDelivery.Domain.Models
 {

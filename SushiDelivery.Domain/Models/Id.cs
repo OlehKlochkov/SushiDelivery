@@ -4,7 +4,7 @@
     /// Structure for strongly typing an identifier value
     /// </summary>
     /// <typeparam name="T">Type of Model</typeparam>
-    public readonly struct Id<T> 
+    public readonly struct Id<T>
     {
         private readonly Guid _value;
 

@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using SushiDelivery.Domain.Enumerations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+using SushiDelivery.Domain.Enumerations;
 
 namespace SushiDelivery.Domain.Models
 {
